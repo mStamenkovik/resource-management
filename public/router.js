@@ -21,6 +21,14 @@ chartsApp.config(['$routeProvider',
                 templateUrl: 'views/projects.ejs',
                 controller: 'ProjectCtrl'
             }).
+            when('/admin/project/edit/:id', {
+                templateUrl: 'views/project-edit.ejs',
+                controller: 'EditProjectCtrl'
+            }).
+            when('/admin/project', {
+                templateUrl: 'views/project-add.ejs',
+                controller: 'AddProjectCtrl'
+            }).
             otherwise({
                 redirectTo: '/'
             });

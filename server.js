@@ -53,11 +53,9 @@ app.get('/api/project/:id', projectApi.project);
 app.put('/api/project/:id', projectApi.updateProject);
 app.put('/api/project/done/:id', projectApi.markDoneProject);
 
-////// app.delete('/api/project/:id', projectApi.deleteProject);
+app.delete('/api/project/:id', projectApi.deleteProject);
 // redirect all others to the index (HTML5 history) //////////////////
 app.get('*', routes.index);
-
-
 
 app.listen(8080);
 console.log("App started!!");

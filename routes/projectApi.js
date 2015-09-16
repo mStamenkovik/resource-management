@@ -11,7 +11,8 @@ bookshelf.knex.schema.hasTable('project').then(function(exists) {
             project.text('description');
             project.date('from');
             project.date('to');
-            project.boolean('active');
+            project.boolean('completed');
+            project.boolean('valid');
         }).then(function(table){
             console.log('Created Table:', table);
         });
@@ -26,6 +27,7 @@ var Project = bookshelf.Model.extend({
 // GET
 exports.projects = function (req, res) {
     new Project()
+        .query('where', 'valid', '=', '1')
         .fetchAll()
         .then(function(projects) {
             res.send(projects.toJSON());
@@ -61,7 +63,7 @@ exports.addProject = function(req, res){
             description: desc,
             from: from,
             to: to,
-            active: '1'
+            valid: '1'
         })
         .then(function(project) {
             res.send(project.toJSON());
@@ -88,7 +90,7 @@ exports.updateProject = function(req, res){
                     description: desc,
                     from: from,
                     to: to,
-                    active: '1'
+                    valid: '1'
                 })
                 .then(function(project) {
                     res.send(project.toJSON());
@@ -126,3 +128,24 @@ exports.markDoneProject = function(req, res){
 };
 
 
+exports.deleteProject = function(req, res){
+    var id = req.params.id;
+    new Project()
+        .query('where', 'id', '=', id)
+        .fetch()
+        .then(function(project) {
+            project
+                .save({
+                    valid: '0'
+                })
+                .then(function(project) {
+                    res.send(project.toJSON());
+                }).catch(function(error) {
+                    console.log(error);
+                    res.send('An error occured');
+                });
+        }).catch(function(error) {
+            console.log(error);
+            res.send('An error occured');
+        });
+};

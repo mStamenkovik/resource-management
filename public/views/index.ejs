@@ -15,17 +15,21 @@
     <script src="../app.js"></script>
     <script src="../router.js"></script>
 
-    <!-- controllers definition -->
+    <!-- Controllers -->
+    <!-- employee controllers definition -->
     <script src="../controllers/employeeController.js"></script>
     <script src="../controllers/addEmployeeController.js"></script>
     <script src="../controllers/editEmployeeController.js"></script>
 
+    <!-- projects controllers definition -->
+    <script src="../controllers/projectController.js"></script>
+    <script src="../controllers/editProjectController.js"></script>
+    <script src="../controllers/addProjectController.js"></script>
 
     <!-- services definition -->
     <script src="../services/employeeFactory.js"></script>
-    <script src="../services/projectsFactory.js"></script>
+    <script src="../services/projectFactory.js"></script>
 </head>
-
 <body ng-app="chartsApp">
 <div >
     <div class="row">
@@ -35,6 +39,8 @@
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" class="active"><a href="#/admin/employeeslist">List of employees</a></li>
                 <li role="presentation"><a href="#/admin/employee">Add new employee</a></li>
+                <li role="presentation"><a href="#/admin/projects">List of projects</a></li>
+                <li role="presentation"><a href="#/admin/project">Add new project</a></li>
             </ul>
         </nav>
         </div>
