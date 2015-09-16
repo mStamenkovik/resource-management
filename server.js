@@ -12,6 +12,7 @@ var app = express();
 var routes = require('./routes');
 var api = require('./routes/api');
 var projectApi = require('./routes/projectApi');
+var userApi = require('./routes/userApi');
 
 //app.configure(function(){
     app.set('views', __dirname + '/public/views');
@@ -36,7 +37,7 @@ app.set('view engine', 'ejs');
 app.get('/', routes.index);
 
 // JSON API
-// EMPLOYEES API =========================================
+// EMPLOYEES API ====================================================
 app.get('/api/employees', api.employees);
 app.post('/api/employees', api.addEmployee);
 
@@ -54,6 +55,11 @@ app.put('/api/project/:id', projectApi.updateProject);
 app.put('/api/project/done/:id', projectApi.markDoneProject);
 
 app.delete('/api/project/:id', projectApi.deleteProject);
+
+// USERS API =========================================================
+app.post('/api/user/authenticate', userApi.authenticateUser);
+
+
 // redirect all others to the index (HTML5 history) //////////////////
 app.get('*', routes.index);
 
