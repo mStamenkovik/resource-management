@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h2>List of employees</h2>
+  <table class="table table-striped">
+   <tr>
+     <th>First Name</th>
+     <th>Last Name</th>
+     <th>View </th>
+     <th>Edit </th>
+     <th>Delete</th>
+   </tr>
+    <tr ng-repeat="employee in employees">
+      <td>
+         {{ employee.name }}
+      </td>
+      <td>
+        {{ employee.last_name }}
+      </td>
+      <td>
+        <button type="button" ng-click="viewEmployee(employee.id)" class="btn btn-default"><span class="glyphicon glyphicon-list"></span></button>
+      </td>
+      <td>
+        <button type="button" ng-click="editEmployee(employee.id)" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
+      </td>
+      <td>
+         <button type="button" ng-click="removeEmployee(employee.id)" class="btn btn-danger">x</button>
+      </td>
+    </tr>
+  </table>
+</div>
