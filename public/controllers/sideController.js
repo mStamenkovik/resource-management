@@ -12,4 +12,14 @@ chartsApp.controller('SideCtrl', ['$scope','UserFactory', '$location', '$routePa
        }
     };
 
+    $scope.checkIfUserLoggedIn = function(){
+      if($rootScope.adminLoggedIn || $rootScope.userLoggedIn){
+          return true;
+      }
+      else{
+          return false;
+      }
+    };
+
+
 }]);

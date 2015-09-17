@@ -1,6 +1,9 @@
 /**
  * Created by Polar Cape on 17-Sep-15.
  */
+    //employee and project schemas and models in one file
+    // if not, the reading of employees per project displays an error
+    //because of the way models are being read
 var bookshelf = require('../bookshelf');
 var effortModel = require('../models/effortModel');
 

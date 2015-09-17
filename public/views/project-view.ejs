@@ -1,0 +1,23 @@
+<div class="container">
+    <h3>Edit Project:</h3>
+    <form>
+        <div class="form-group">
+            <label>Project Name</label>
+            <input type="text" class="form-control" placeholder="Project Name" ng-model="project[0].name">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea type="text"  class="form-control"  placeholder="Project Description" ng-model="project[0].description"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Date from:</label>
+            <input type="text"  class="form-control"  ng-model="project[0].from">
+        </div>
+        <div class="form-group">
+            <label>Date to:</label>
+            <input type="text"  class="form-control" ng-model="project[0].to">
+        </div>
+        <button type="submit" ng-click="updateProject()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
+        <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
+    </form>
+</div>
