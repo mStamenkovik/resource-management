@@ -2,10 +2,9 @@
  * Created by Polar Cape on 17-Sep-15.
  */
 var bookshelf = require('../bookshelf');
-var projectModel = require('../models/projectModel');
 var employeeModel = require('../models/employeeModel');
 
-var Project = projectModel.Project;
+var Project = employeeModel.Project;
 var Employee = employeeModel.Employee;
 
 bookshelf.knex.schema.hasTable('effort').then(function(exists) {

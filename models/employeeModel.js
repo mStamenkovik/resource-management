@@ -2,10 +2,8 @@
  * Created by Polar Cape on 17-Sep-15.
  */
 var bookshelf = require('../bookshelf');
-var projectModel = require('../models/projectModel');
 var effortModel = require('../models/effortModel');
 
-var Project = projectModel.Project;
 var Effort = effortModel.Effort;
 
 bookshelf.knex.schema.hasTable('employee').then(function(exists) {
@@ -22,7 +20,24 @@ bookshelf.knex.schema.hasTable('employee').then(function(exists) {
 
 });
 
-exports.Employee = bookshelf.Model.extend({
+bookshelf.knex.schema.hasTable('project').then(function(exists) {
+    if(!exists) {
+        bookshelf.knex.schema.createTable('project', function(project) {
+            project.increments('id').primary();
+            project.string('name');
+            project.text('description');
+            project.date('from');
+            project.date('to');
+            project.boolean('completed');
+            project.boolean('valid');
+        }).then(function(table){
+            console.log('Created Table:', table);
+        });
+    }
+
+});
+
+var Employee = bookshelf.Model.extend({
     tableName: 'employee',
 
     projects: function () {
@@ -30,3 +45,18 @@ exports.Employee = bookshelf.Model.extend({
             .belongsToMany(Project).through(Effort);
     }
 });
+
+
+var Project = bookshelf.Model.extend({
+    tableName: 'project',
+
+    employees: function () {
+        return this
+            .belongsToMany(Employee).through(Effort);
+    }
+});
+
+module.exports = {
+    Project: Project,
+    Employee: Employee
+};

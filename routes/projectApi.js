@@ -2,8 +2,8 @@
  * Created by Polar Cape on 11-Sep-15.
  */
 var bookshelf = require('../bookshelf');
-var projectModel = require('../models/projectModel');
-var Project = projectModel.Project;
+var employeeModel = require('../models/employeeModel');
+var Project = employeeModel.Project;
 
 // GET
 exports.projects = function (req, res) {
