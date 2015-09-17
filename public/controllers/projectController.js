@@ -3,11 +3,11 @@
  */
 chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location','$routeParams','ProjectFactory', function($scope, ProjectsFactory, $location, $routeParams, ProjectFactory){
 
-    $scope.removeProject = function(id){
+    $scope.removeProject = function(id, index){
         var result = confirm("Are you sure you want to delete the project?");
         if(result) {
             ProjectFactory.delete({ id: id });
-            $scope.projects =  ProjectsFactory.query();
+            $scope.projects.splice(index, 1);
         }
     };
 

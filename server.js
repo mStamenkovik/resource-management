@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser');
 var app = express();
 
 var routes = require('./routes');
-var api = require('./routes/api');
+var api = require('./routes/employeeApi');
 var projectApi = require('./routes/projectApi');
 var userApi = require('./routes/userApi');
 

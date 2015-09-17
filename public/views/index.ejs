@@ -28,6 +28,7 @@
 
     <!-- login controllers -->
     <script src="../controllers/loginController.js"></script>
+    <script src="../controllers/sideController.js"></script>
 
     <!-- services definition -->
     <script src="../services/employeeFactory.js"></script>
@@ -38,16 +39,16 @@
 <body ng-app="chartsApp">
 <div >
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2" ng-controller="SideCtrl">
 
-        <nav class="nav navbar-nav">
-            <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="#/admin/employeeslist">List of employees</a></li>
-                <li role="presentation"><a href="#/admin/employee">Add new employee</a></li>
-                <li role="presentation"><a href="#/admin/projects">List of projects</a></li>
-                <li role="presentation"><a href="#/admin/project">Add new project</a></li>
-            </ul>
-        </nav>
+            <nav ng-show="checkIfAdminLoggedIn()" class="nav navbar-nav">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#/admin/employeeslist">List of employees</a></li>
+                    <li role="presentation"><a href="#/admin/employee">Add new employee</a></li>
+                    <li role="presentation"><a href="#/admin/projects">List of projects</a></li>
+                    <li role="presentation"><a href="#/admin/project">Add new project</a></li>
+                </ul>
+            </nav>
         </div>
         <div class="col-d-9" ng-view>
         </div>

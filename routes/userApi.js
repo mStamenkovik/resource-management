@@ -3,23 +3,8 @@
  */
 var bookshelf = require('../bookshelf');
 
-bookshelf.knex.schema.hasTable('user').then(function(exists) {
-    if(!exists) {
-        bookshelf.knex.schema.createTable('user', function(user) {
-            user.increments('id').primary();
-            user.string('username');
-            user.string('password');
-            user.boolean('valid');
-        }).then(function(table){
-            console.log('Created Table:', table);
-        });
-    }
-
-});
-
-var User = bookshelf.Model.extend({
-    tableName: 'user'
-});
+var userModel = require('../models/userModel');
+var User = userModel.User;
 
 //authenticate user
 exports.authenticateUser = function(req, res){

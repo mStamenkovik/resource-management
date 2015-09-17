@@ -33,6 +33,10 @@ chartsApp.config(['$routeProvider',
                 templateUrl: 'views/login.ejs',
                 controller: 'LoginCtrl'
             }).
+            when('/projects', {
+                templateUrl: 'views/projects.ejs',
+                controller: 'ProjectCtrl'
+            }).
             otherwise({
                 redirectTo: '/'
             });

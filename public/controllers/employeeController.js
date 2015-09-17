@@ -4,11 +4,11 @@
 chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFactory', '$location', '$routeParams', function($scope, EmployeesFactory, EmployeeFactory, $location, $routeParams){
 
 
-    $scope.removeEmployee = function(id){
+    $scope.removeEmployee = function(id, index){
         var result = confirm("Are you sure you want to delete employee?");
         if(result) {
             EmployeeFactory.delete({ id: id });
-            $scope.employees =  EmployeesFactory.query();
+            $scope.employees.splice(index, 1);
         }
     };
 

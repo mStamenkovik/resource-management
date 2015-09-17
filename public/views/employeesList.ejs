@@ -23,7 +23,7 @@
         <button type="button" ng-click="editEmployee(employee.id)" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
       </td>
       <td>
-         <button type="button" ng-click="removeEmployee(employee.id)" class="btn btn-danger">x</button>
+         <button type="button" ng-click="removeEmployee(employee.id, $index)" class="btn btn-danger">x</button>
       </td>
     </tr>
   </table>

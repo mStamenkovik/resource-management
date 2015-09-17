@@ -2,33 +2,14 @@
  * Created by Polar Cape on 11-Sep-15.
  */
 var bookshelf = require('../bookshelf');
-
-bookshelf.knex.schema.hasTable('project').then(function(exists) {
-    if(!exists) {
-        bookshelf.knex.schema.createTable('project', function(project) {
-            project.increments('id').primary();
-            project.string('name');
-            project.text('description');
-            project.date('from');
-            project.date('to');
-            project.boolean('completed');
-            project.boolean('valid');
-        }).then(function(table){
-            console.log('Created Table:', table);
-        });
-    }
-
-});
-
-var Project = bookshelf.Model.extend({
-    tableName: 'project'
-});
+var projectModel = require('../models/projectModel');
+var Project = projectModel.Project;
 
 // GET
 exports.projects = function (req, res) {
     new Project()
         .query('where', 'valid', '=', '1')
-        .fetchAll()
+        .fetchAll({withRelated: ['employees']})
         .then(function(projects) {
             res.send(projects.toJSON());
         }).catch(function(error) {
@@ -42,7 +23,7 @@ exports.project = function (req, res) {
     var id = req.params.id;
     new Project()
         .query('where', 'id', '=', id)
-        .fetchAll()
+        .fetchAll({withRelated: ['employees']})
         .then(function(project) {
             res.send(project.toJSON());
         }).catch(function(error) {

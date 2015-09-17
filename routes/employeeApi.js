@@ -2,44 +2,28 @@
  * Created by Polar Cape on 10-Sep-15.
  */
 var bookshelf = require('../bookshelf');
+var employeeModel = require('../models/employeeModel');
+var Employee = employeeModel.Employee;
 
-bookshelf.knex.schema.hasTable('employee').then(function(exists) {
-    if(!exists) {
-        bookshelf.knex.schema.createTable('employee', function(employee) {
-            employee.increments('id').primary();
-            employee.string('name');
-            employee.string('last_name');
-            employee.boolean('valid');
-        }).then(function(table){
-            console.log('Created Table:', table);
-        });
-    }
-
-});
-
-var Employee = bookshelf.Model.extend({
-    tableName: 'employee'
-});
 
 // GET
 exports.employees = function (req, res) {
     new Employee()
         .query('where', 'valid', '=', '1')
-        .fetchAll()
+        .fetchAll({withRelated: ['projects']})
         .then(function(employees) {
             res.send(employees.toJSON());
         }).catch(function(error) {
             console.log(error);
             res.send('An error occured');
         });
-
 };
 
 exports.employee = function (req, res) {
     var id = req.params.id;
     new Employee()
         .query('where', 'id', '=', id)
-        .fetchAll()
+        .fetchAll({withRelated: ['projects']})
         .then(function(employee) {
             res.send(employee.toJSON());
         }).catch(function(error) {
