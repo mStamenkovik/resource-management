@@ -32,6 +32,20 @@ exports.project = function (req, res) {
         });
 };
 
+//GET BY COMPLETITION
+exports.getByCompletition = function(req, res){
+    var completition = req.params.type;
+    new Project()
+        .query('where', 'completed', '=', completition)
+        .fetchAll({withRelated: ['employees']})
+        .then(function(project) {
+            res.send(project.toJSON());
+        }).catch(function(error) {
+            console.log(error);
+            res.send('An error occured');
+        });
+};
+
 //POST
 exports.addProject = function(req, res){
     var name = req.body.name;
@@ -129,4 +143,19 @@ exports.deleteProject = function(req, res){
             console.log(error);
             res.send('An error occured');
         });
+};
+
+
+//PUT
+exports.assignEmployee = function(req, res){
+    console.log("Request pid: " + req.body.project_id);
+    return "ok";
+   /* var employee = req.body.employee;
+     new Project(req.body).save()
+     .then(function(project){
+     // this is important
+     return project.employees().attach(employee);
+     }).catch(function(error){
+     console.log(error);
+     });*/
 };

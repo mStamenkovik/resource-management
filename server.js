@@ -55,6 +55,10 @@ app.put('/api/project/:id', projectApi.updateProject);
 app.put('/api/project/done/:id', projectApi.markDoneProject);
 
 app.delete('/api/project/:id', projectApi.deleteProject);
+app.get('/api/project/completed/:type', projectApi.getByCompletition);
+
+app.post('/api/project/assign', projectApi.assignEmployee);
+
 
 // USERS API =========================================================
 app.post('/api/user/authenticate', userApi.authenticateUser);

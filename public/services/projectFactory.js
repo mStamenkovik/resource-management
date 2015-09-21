@@ -19,3 +19,24 @@ chartsApp.factory('ProjectFactory', function ($resource) {
     })
 });
 
+//factory for assigning an employee to a project
+chartsApp.factory('ProjectAssignFactory', function ($resource) {
+    return $resource('/api/project/assign', {}, {
+        update: {
+            method: 'POST'
+            /*, headers : {
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }*/
+        }
+    })
+});
+
+
+
+chartsApp.service('ProjectService', ['$http', '$resource',  function($http, $resource) {
+
+    this.getProjectsByCompletition = function(type){
+        var res = $resource('/api/project/completed/:type', {type: '@type'});
+        return res.query({type: type});
+    };
+}]);

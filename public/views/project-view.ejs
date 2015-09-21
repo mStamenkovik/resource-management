@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Edit Project:</h3>
+    <h3>View Project:</h3>
     <form>
         <div class="form-group">
             <label>Project Name</label>
@@ -17,7 +17,10 @@
             <label>Date to:</label>
             <input type="text"  class="form-control" ng-model="project[0].to">
         </div>
-        <button type="submit" ng-click="updateProject()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
+        <div class="form-group">
+            <label>Assigned Employees</label>
+            <h5 ng-repeat="employee in project[0].employees">{{ employee.name }}  {{ employee.last_name }}</h5>
+        </div>
         <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
     </form>
 </div>

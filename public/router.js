@@ -29,6 +29,10 @@ chartsApp.config(['$routeProvider',
                 templateUrl: 'views/project-add.ejs',
                 controller: 'AddProjectCtrl'
             }).
+            when('/admin/assign', {
+                templateUrl: 'views/assignProject.ejs',
+                controller: 'AssignCtrl'
+            }).
             when('/login', {
                 templateUrl: 'views/login.ejs',
                 controller: 'LoginCtrl'
