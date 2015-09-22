@@ -32,7 +32,6 @@ chartsApp.factory('ProjectAssignFactory', function ($resource) {
 });
 
 
-
 chartsApp.service('ProjectService', ['$http', '$resource',  function($http, $resource) {
 
     this.getProjectsByCompletition = function(type){

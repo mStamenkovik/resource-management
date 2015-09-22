@@ -58,6 +58,7 @@ exports.addProject = function(req, res){
             description: desc,
             from: from,
             to: to,
+            completed: '0',
             valid: '1'
         })
         .then(function(project) {
@@ -108,7 +109,7 @@ exports.markDoneProject = function(req, res){
         .then(function(project) {
             project
                 .save({
-                    valid: '0'
+                    completed: '1'
                 })
                 .then(function(project) {
                     res.send(project.toJSON());
@@ -149,13 +150,26 @@ exports.deleteProject = function(req, res){
 //PUT
 exports.assignEmployee = function(req, res){
     console.log("Request pid: " + req.body.project_id);
-    return "ok";
-   /* var employee = req.body.employee;
-     new Project(req.body).save()
-     .then(function(project){
-     // this is important
-     return project.employees().attach(employee);
-     }).catch(function(error){
-     console.log(error);
-     });*/
+    var project_id = req.body.project_id;
+    var employee = req.body.employee;
+    console.log(employee.name);
+    new Project()
+        .query('where', 'id', '=', project_id)
+        .fetch()
+        .then(function(project) {
+            project
+                .save({
+                })
+                .then(function(project) {
+                    console.log(project.name);
+                    project.employees.attach(employee);
+                    res.send(project.toJSON());
+                }).catch(function(error) {
+                    console.log("err1 " + error);
+                    res.send('An error occured' + error);
+                });
+        }).catch(function(error) {
+            console.log("err2 " + error);
+            res.send('An error occured' + error);
+        });
 };

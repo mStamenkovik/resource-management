@@ -13,4 +13,3 @@ var knex = require('knex')({
 });
 
 module.exports = require('bookshelf')(knex);
-//exports.bookshelf = require('bookshelf')(knex);

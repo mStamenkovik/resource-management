@@ -17,3 +17,14 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
     $scope.employee = EmployeeFactory.show({id: $routeParams.id});
 
 }]);
+
+chartsApp.controller('ViewEmployeeCtrl', ['$scope','EmployeeFactory', '$location','$routeParams', function($scope, EmployeeFactory, $location,$routeParams){
+
+    // callback for ng-click 'cancel':
+    $scope.cancel = function () {
+        $location.path('/admin/employeeslist');
+    };
+
+    $scope.employee = EmployeeFactory.show({id: $routeParams.id});
+
+}]);

@@ -3,6 +3,9 @@
  */
 chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFactory', '$location', '$routeParams', function($scope, EmployeesFactory, EmployeeFactory, $location, $routeParams){
 
+    $scope.viewEmployee = function(id){
+        $location.path('/admin/employee/view/' + id);
+    };
 
     $scope.removeEmployee = function(id, index){
         var result = confirm("Are you sure you want to delete employee?");
