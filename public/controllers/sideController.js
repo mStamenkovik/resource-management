@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 17-Sep-15.
  */
-chartsApp.controller('SideCtrl', ['$scope','UserFactory', '$location', '$routeParams', '$rootScope', function($scope, UserFactory, $location, $routeParams, $rootScope){
+chartsApp.controller('SideCtrl', ['$scope','UserFactory', '$location', '$rootScope', function($scope, UserFactory, $location, $rootScope){
     /*   $scope.checkIfAdminLoggedIn = function(){
        if($rootScope.adminLoggedIn) {
            return true;
@@ -26,7 +26,7 @@ chartsApp.controller('SideCtrl', ['$scope','UserFactory', '$location', '$routePa
         return viewLocation === $location.path();
     };
 
-    if(sessionStorage.loggedIn){
+   /* if(sessionStorage.loggedIn){
         $scope.userLogged = true;
         //console.log("parse: " + sessionStorage.user);
 
@@ -52,6 +52,6 @@ chartsApp.controller('SideCtrl', ['$scope','UserFactory', '$location', '$routePa
         $scope.userLogged = false;
         $scope.adminLogged = false;
         $location.path("/login");
-    };
+    };*/
 
 }]);

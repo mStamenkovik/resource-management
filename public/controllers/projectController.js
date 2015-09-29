@@ -1,8 +1,8 @@
 /**
  * Created by Polar Cape on 11-Sep-15.
  */
-chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location','$routeParams','ProjectFactory','$rootScope', 'ProjectService',
-         function($scope, ProjectsFactory, $location, $routeParams, ProjectFactory, $rootScope, ProjectService){
+chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'ProjectFactory','$rootScope', 'ProjectService',
+         function($scope, ProjectsFactory, $location, ProjectFactory, $rootScope, ProjectService){
 
     $scope.tab = 1;
 
@@ -30,21 +30,36 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location','$r
     $scope.selectTab = function(selectTab){
         $scope.tab = selectTab;
         if(selectTab == 1){
-            $scope.projects = ProjectsFactory.query();
+            var projects = ProjectsFactory.query().$promise.then(function (data){
+                $scope.projects = data;
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
         }
         else if(selectTab == 2){
-            $scope.projects = ProjectService.getProjectsByCompletition(0);
+            var projects = ProjectService.getProjectsByCompletition(0).$promise.then(function (data){
+                $scope.projects = data;
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
         }
         else if(selectTab == 3){
-            $scope.projects = ProjectService.getProjectsByCompletition(1);
+            var projects = ProjectService.getProjectsByCompletition(1).$promise.then(function (data){
+                $scope.projects = data;
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
         }
     };
 
     $scope.removeProject = function(id, index){
         var result = confirm("Are you sure you want to delete the project?");
         if(result) {
-            ProjectFactory.delete({ id: id });
-            $scope.projects.splice(index, 1);
+            ProjectFactory.delete({ id: id }).$promise.then(function (data){
+                $scope.projects.splice(index, 1);
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
         }
     };
 
@@ -56,5 +71,9 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location','$r
         $location.path('/admin/project/view/' + id);
     };
 
-    $scope.projects = ProjectsFactory.query();
+    var projects = ProjectsFactory.query().$promise.then(function (data){
+          $scope.projects = data;
+    }, function(error){
+        alert("Error:  " + error.data);
+    });
 }]);

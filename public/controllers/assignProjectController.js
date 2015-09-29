@@ -1,42 +1,65 @@
 /**
  * Created by Polar Cape on 18-Sep-15.
  */
-chartsApp.controller('AssignCtrl', ['$scope','ProjectFactory', 'ProjectsFactory','EmployeesFactory', 'ProjectAssignFactory', '$location','$routeParams',
-    function($scope, ProjectFactory, ProjectsFactory, EmployeesFactory, ProjectAssignFactory, $location, $routeParams){
+chartsApp.controller('AssignCtrl', ['$scope','ProjectFactory', 'ProjectsFactory','EmployeesFactory', 'ProjectAssignFactory', '$location',
+    function($scope, ProjectFactory, ProjectsFactory, EmployeesFactory, ProjectAssignFactory, $location){
         var employee = [];
+
         $scope.selectProject = [];
-        $scope.selectEmployee = employee;
         $scope.assignedEmployees = [];
+        $scope.selectEmployee = employee;
+        $scope.firstOption = true;
 
-
-       /* $scope.selectedProject = function(){
-            $scope.employees = $scope.project.employees;
+        $scope.removeFirstOption = function(){
+            $scope.firstOption = false;
         };
-
-        $scope.selectedEmployee = function(){
-            $scope.assignedEmployees.push($scope.employee);
-        };*/
 
         $scope.save = function(){
-            /*var result = confirm("Assign employees to project?");
-            if(result){*/
+            var result = confirm("Assign employees to project?");
+            if(result){
                 angular.forEach($scope.assignedEmployees, function(value, index){
-                   // console.log("val: " + value.id);
-                    var ids = {
-                        project_id: $scope.selectProject.id,
-                        employee: value
-                    };
-                        ProjectAssignFactory.update(ids);
+                    var projectID = $scope.selectProject.id;
 
+                    var employee = $.param({
+                        'employeeId' : value.id,
+                        'percent': '50'
+                    });
+                        ProjectAssignFactory.update({id: projectID}, employee).$promise.then(function (data){
+                           alert("Employees assigned");
+                        }, function(error){
+                            alert("Error:  " + error.data);
+                        });
                 });
-           // }
+           }
         };
 
-        $scope.assignEmployee = function(){
-            $scope.assignedEmployees.push($scope.selectEmployee[0]);
-            //$scope.allEmployees.splice(1, index);
+
+        $scope.assignEmployee = function(item, from, to){
+            //console.log('Move item   Item: '+item.name +' From:: '+from+' To:: '+to);
+            angular.forEach(item, function(value){
+                var index = from.indexOf(value);
+                if(index != -1){
+                    from.splice(index, 1);
+                    to.push(value);
+                }
+            });
+
+
         };
 
-    $scope.projects = ProjectsFactory.query();
-    $scope.allEmployees = EmployeesFactory.query();
+
+            var projects = ProjectsFactory.query().$promise.then(function (data){
+                $scope.projects = data;
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
+
+           var allEmployees = EmployeesFactory.query().$promise.then(function (data){
+                $scope.allEmployees = data;
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
 }]);
+
+
+

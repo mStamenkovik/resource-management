@@ -33,26 +33,27 @@
         <div class="col-md-5">
             <div class="row ">
                 <h4>Select project</h4>
-                <select class="form-control" ng-model="selectProject" ng-change="selectedProject()" ng-options="project.name for project in projects">
+                <select ng-click="removeFirstOption()" class="form-control" ng-model="selectProject" ng-change="selectedProject()" ng-options="project.name for project in projects">
+                    <option value="" ng-show="firstOption">Select Project</option>
                 </select>
 
             </div>
             <div class="row" style="margin-top: 40px">
                 <h4>Select employees</h4>
-                <select class="form-control" size="10" multiple ng-model="selectEmployee" ng-options="employee.name for employee in allEmployees" ></select>
+                <select class="form-control" size="10" multiple ng-model="available" ng-options="employee as employee.name for employee in allEmployees" ></select>
             </div>
         </div>
         <div class="col-md-1">
             <div class="row ">
-              <button type="submit" ng-click="assignEmployee()" class="btn btn-info"><span class="glyphicon glyphicon-arrow-right"></span>  Move</button>
+              <button type="submit" ng-click="assignEmployee(available, allEmployees ,assignedEmployees)" class="btn btn-info"><span class="glyphicon glyphicon-arrow-right"></span>  Move</button>
             </div>
             <div class="row ">
-                <button type="submit" ng-click="removeEmployee()" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span>  Move</button>
+                <button type="submit" ng-click="assignEmployee(selected, assignedEmployees, allEmployees )" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span>  Move</button>
             </div>
         </div>
         <div class="col-md-6">
 
-            <select class="form-control" size="10" ng-model="assignEmployees" ng-options="employee.name for employee in assignedEmployees" ></select>
+            <select class="form-control" size="10" multiple ng-model="selected" ng-options="employee as employee.name for employee in assignedEmployees" ></select>
             <button ng-click="save()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
         </div>
     </div>

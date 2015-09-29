@@ -73,7 +73,7 @@ exports.updateEmployee = function (req, res) {
                 });
         }).catch(function(error) {
             console.log(error);
-            res.send('An error occured');
+            res.send(error);
         });
 };
 
@@ -93,11 +93,11 @@ exports.deleteEmployee = function (req, res) {
                     res.send(employee.toJSON());
                 }).catch(function(error) {
                     console.log(error);
-                    res.send('An error occured');
+                    res.send(error);
                 });
         }).catch(function(error) {
             console.log(error);
-            res.send('An error occured');
+            res.send(error);
         });
 
 };

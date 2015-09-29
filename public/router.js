@@ -2,10 +2,50 @@
  * Created by Polar Cape on 10-Sep-15.
  */
 
+chartsApp.config(function($stateProvider, $urlRouterProvider){
+
+  //  $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+        .state('admin', {
+            url: '/admin',
+            templateUrl: 'views/main-admin.ejs',
+            controller: 'SideCtrl'
+        })
+        .state('admin.employees', {
+            url: '/employees',
+            templateUrl: 'views/employeesList.ejs',
+            controller: 'EmployeeCtrl'
+        })
+        .state('admin.employee', {
+            url: '/employee',
+            templateUrl: 'views/employee-add.ejs',
+            controller: 'AddEmployeeCtrl'
+        })
+        .state('admin.projects', {
+            url: '/projects',
+            templateUrl: 'views/projects.ejs',
+            controller: 'ProjectCtrl'
+        })
+        .state('admin.project', {
+            url: '/project',
+            templateUrl: 'views/project-add.ejs',
+            controller: 'AddProjectCtrl'
+        })
+        .state('admin.assign', {
+            url: '/assign',
+            templateUrl: 'views/assignProject.ejs',
+            controller: 'AssignCtrl'
+        })
+
+
+});
+
+/*
 chartsApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/admin/employeeslist', {
+            when('/admin/employees', {
                 templateUrl: 'views/employeesList.ejs',
                 controller: 'EmployeeCtrl'
             }).
@@ -53,3 +93,5 @@ chartsApp.config(['$routeProvider',
                 redirectTo: '/'
             });
     }]);
+
+*/

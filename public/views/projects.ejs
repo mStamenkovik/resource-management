@@ -30,7 +30,7 @@
                     <th>Description</th>
                     <th>Date From</th>
                     <th>Date To</th>
-                    <th>Completed</th>
+                    <th>Status</th>
                     <th>View</th>
                     <th ng-show="checkIfAdminLoggedIn()" >Edit</th>
                     <th ng-show="checkIfAdminLoggedIn()" >Delete</th>
@@ -43,13 +43,13 @@
                         {{ project.description }}
                     </td>
                     <td>
-                        {{ project.from | limitTo: 10}}
+                        {{ project.fromDate }}
                     </td>
                     <td>
-                        {{ project.to | limitTo: 10 }}
+                        {{ project.toDate  }}
                     </td>
                     <td>
-                        <span ng-class="project.completed ? 'glyphicon glyphicon-ok green' : 'glyphicon glyphicon-remove red'"></span>
+                        {{ project.status  }}
                     </td>
                     <td>
                         <button type="button" ng-click="viewProject(project.id)" class="btn btn-default"><span class="glyphicon glyphicon-list"></span></button>

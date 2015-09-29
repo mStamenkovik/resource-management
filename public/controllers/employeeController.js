@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 10-Sep-15.
  */
-chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFactory', '$location', '$routeParams', function($scope, EmployeesFactory, EmployeeFactory, $location, $routeParams){
+chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFactory', '$location', function($scope, EmployeesFactory, EmployeeFactory, $location){
 
     $scope.viewEmployee = function(id){
         $location.path('/admin/employee/view/' + id);
@@ -10,8 +10,11 @@ chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFact
     $scope.removeEmployee = function(id, index){
         var result = confirm("Are you sure you want to delete employee?");
         if(result) {
-            EmployeeFactory.delete({ id: id });
-            $scope.employees.splice(index, 1);
+            EmployeeFactory.delete({ id: id }).$promise.then(function (data){
+                 $scope.employees.splice(index, 1);
+            }, function(error){
+                alert("Error:  " + error.data);
+            });
         }
     };
 
@@ -19,7 +22,13 @@ chartsApp.controller('EmployeeCtrl', ['$scope','EmployeesFactory', 'EmployeeFact
        $location.path('/admin/employee/edit/' + id);
     };
 
-    $scope.employees = EmployeesFactory.query();
 
+
+        EmployeesFactory.query(function(data){
+            $scope.employees = data;
+        }, function(error){
+            alert("error " + error);
+        });
 
 }]);
+

@@ -48,14 +48,14 @@
     </nav>
 
     <div class="row">
-        <div class="col-md-2" >
+      <!-- <div class="col-md-2" >
 
             <nav  class="nav navbar-nav" ng-show="adminLogged">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" ng-class="{active : isActive('/admin')}">
                         <a href="#/admin">Overview</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/employeeslist')}">
-                        <a href="#/admin/employeeslist">
+                    <li role="presentation" ng-class="{active : isActive('/admin/employees')}">
+                        <a href="#/admin/employees">
                             List of employees</a></li>
                     <li role="presentation" ng-class="{active : isActive('/admin/employee')}">
                         <a href="#/admin/employee">Add new employee</a></li>
@@ -69,14 +69,18 @@
             </nav>
         </div>
         <div class="col-md-9" ng-view>
-        </div>
+        </div>-->
+        <div ui-view></div>
     </div>
 
 </div>
 
+
 <script src="../angular/angular.min.js"></script>
-<script src="../angular-route/angular-route.min.js"></script>
 <script src="../angular-resource/angular-resource.min.js"></script>
+<script src="../angular-ui-router/build/angular-ui-router.min.js"></script>
+<script src="../angular-base64/angular-base64.min.js"></script>
+<script src="../angular-route/angular-route.min.js"></script>
 <script src="../jquery/dist/jquery.js"></script>
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
 
