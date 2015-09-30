@@ -13,7 +13,9 @@ chartsApp.controller('ManageCtrl', ['$scope', '$location', 'ProjectService', 'Pr
             $location.path('/employee/project/view/' + id);
         };
 
-        $scope.manageProject = function(id){};
+        $scope.manageProject = function(id){
+            $location.path('/employee/manage/project/' + id);
+        };
 
        $scope.checkIfManagerLoggedIn = function(){
          return true;

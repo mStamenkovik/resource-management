@@ -79,6 +79,11 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: 'views/projects.ejs',
             controller: 'ManageCtrl'
         })
+        .state('employee.manageProject', {
+            url: '/manage/project/:id',
+            templateUrl: 'views/manageProject.ejs',
+            controller: 'ManageProjectCtrl'
+        })
         .state('employee.viewProject', {
             url: '/project/view/:id',
             templateUrl: 'views/project-view.ejs',
