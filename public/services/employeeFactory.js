@@ -16,7 +16,7 @@ chartsApp.factory('EmployeesFactory', function ($resource) {
 chartsApp.factory('EmployeeFactory', function ($resource) {
 
     return $resource('http://10.10.20.84:8080/data/employees/:id', {}, {
-        show: { method: 'GET', isArray: false },
+        show: { method: 'GET' },
         update: { method: 'PUT'
                     /*,headers : {
                         'Content-Type' : 'application/x-www-form-urlencoded'
@@ -27,3 +27,8 @@ chartsApp.factory('EmployeeFactory', function ($resource) {
     })
 });
 
+//query, create
+// http://10.10.20.84:8080/data/employees
+
+//show, update, delete
+//http://10.10.20.84:8080/data/employees/:id

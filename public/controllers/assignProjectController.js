@@ -43,8 +43,6 @@ chartsApp.controller('AssignCtrl', ['$scope','ProjectFactory', 'ProjectsFactory'
                     to.push(value);
                 }
             });
-
-
         };
 
 

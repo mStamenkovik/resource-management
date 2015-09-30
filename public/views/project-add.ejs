@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="col-md-9">
     <h3>Add Project:</h3>
     <form>
         <div class="form-group">
@@ -11,7 +12,7 @@
         </div>
         <div class="form-group">
             <label>Date from:</label>
-            <input type="text"  class="form-control"  ng-model="project.fromDate">
+            <input  type="date" placeholder="yyyy-MM-dd"  class="form-control"  ng-model="project.fromDate">
         </div>
         <div class="form-group">
             <label>Date to:</label>
@@ -19,8 +20,15 @@
         </div>
         <div class="form-group">
             <label>Project Status</label>
-            <input type="date" placeholder="yyyy-MM-dd" class="form-control" ng-model="project.status">
+            <input type="text" placeholder="Project Status" class="form-control" ng-model="project.status">
+        </div>
+        <div class="form-group">
+            <h4>Select project manager</h4>
+            <select class="form-control" ng-model="selectManager" ng-options="employee.name for employee in employees">
+                <option value="" >Select Project Manager</option>
+            </select>
         </div>
         <button type="submit" ng-click="addProject()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>  Add Project</button>
     </form>
+  </div>
 </div>

@@ -1,8 +1,8 @@
 /**
  * Created by Polar Cape on 11-Sep-15.
  */
-chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'ProjectFactory','$rootScope', 'ProjectService',
-         function($scope, ProjectsFactory, $location, ProjectFactory, $rootScope, ProjectService){
+chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'ProjectFactory','$rootScope',
+         function($scope, ProjectsFactory, $location, ProjectFactory, $rootScope){
 
     $scope.tab = 1;
 
@@ -23,6 +23,10 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
         }
     };
 
+    $scope.checkIfManagerLoggedIn  = function(){
+         return false;
+    };
+
     $scope.isTabSelected = function (checkTab){
         return $scope.tab == checkTab;
     };
@@ -36,7 +40,7 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
                 alert("Error:  " + error.data);
             });
         }
-        else if(selectTab == 2){
+      /*  else if(selectTab == 2){
             var projects = ProjectService.getProjectsByCompletition(0).$promise.then(function (data){
                 $scope.projects = data;
             }, function(error){
@@ -49,7 +53,7 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
             }, function(error){
                 alert("Error:  " + error.data);
             });
-        }
+        }*/
     };
 
     $scope.removeProject = function(id, index){

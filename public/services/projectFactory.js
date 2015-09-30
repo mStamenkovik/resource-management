@@ -14,7 +14,13 @@ chartsApp.factory('ProjectsFactory', ['$http', '$resource',
 chartsApp.factory('ProjectFactory', function ($resource) {
     return $resource('http://10.10.20.84:8080/data/projects/:id', {}, {
         show: { method: 'GET', isArray: false },
-        update: { method: 'PUT', params: {id: '@id'} },
+        update: {
+            method: 'PUT'
+            /*,headers : {
+             'Content-Type' : 'application/x-www-form-urlencoded'
+             }*/
+            , params: {id: '@id'}
+        },
         delete: { method: 'DELETE', params: {id: '@id'} }
     })
 });
@@ -33,11 +39,23 @@ chartsApp.factory('ProjectAssignFactory', function ($resource) {
 });
 
 
-/*
+
 chartsApp.service('ProjectService', ['$http', '$resource',  function($http, $resource) {
 
-    this.getProjectsByCompletition = function(type){
+  /*  this.getProjectsByCompletition = function(type){
+        var res = $resource('/api/project/completed/:type', {type: '@type'});
+        return res.query({type: type});
+    };*/
+
+    this.getProjectsByManagement = function(managerId){
         var res = $resource('/api/project/completed/:type', {type: '@type'});
         return res.query({type: type});
     };
-}]);*/
+
+}]);
+
+
+//create
+//http://10.10.20.84:8080/data/projects
+//show
+//http://10.10.20.84:8080/data/projects/:id

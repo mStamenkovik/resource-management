@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 14-Sep-15.
  */
-chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location','$routeParams', function($scope, EmployeeFactory, $location,$routeParams){
+chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location','$stateParams', function($scope, EmployeeFactory, $location,$stateParams){
 
     // callback for ng-click 'updateEmployee':
     $scope.updateEmployee = function () {
@@ -31,7 +31,7 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
     //$scope.employee = EmployeeFactory.show({id: $routeParams.id});
 
       //display employee to change
-      var employee  = EmployeeFactory.show({id: $routeParams.id}).$promise.then(function (employee){
+      var employee  = EmployeeFactory.show({id: $stateParams.id}).$promise.then(function (employee){
            $scope.employee = employee;
       }, function(error){
             alert("Error:  " + error.data);
@@ -39,14 +39,16 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
 
 }]);
 
-chartsApp.controller('ViewEmployeeCtrl', ['$scope','EmployeeFactory', '$location','$routeParams', function($scope, EmployeeFactory, $location,$routeParams){
+chartsApp.controller('ViewEmployeeCtrl', ['$scope','EmployeeFactory', '$location', '$stateParams', function($scope, EmployeeFactory, $location, $stateParams){
 
+
+    //console.log("konzole log");
     // callback for ng-click 'cancel':
     $scope.cancel = function () {
         $location.path('/admin/employees');
     };
 
-    var employee  = EmployeeFactory.show({id: $routeParams.id}).$promise.then(function (employee){
+    var employee  = EmployeeFactory.show({id: $stateParams.id}).$promise.then(function (employee){
         $scope.employee = employee;
     }, function(error){
         alert("Error:  " + error.data);

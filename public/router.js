@@ -9,7 +9,7 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('admin', {
             url: '/admin',
-            templateUrl: 'views/main-admin.ejs',
+            templateUrl: 'views/admin-sidebar.ejs',
             controller: 'SideCtrl'
         })
         .state('admin.employees', {
@@ -22,6 +22,20 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: 'views/employee-add.ejs',
             controller: 'AddEmployeeCtrl'
         })
+            /* Admin > View Employee */
+        .state('admin.viewEmployee', {
+            url: '/employee/view/:id',
+            templateUrl: 'views/employee-view.ejs',
+            controller: 'ViewEmployeeCtrl'
+        })
+
+            /* Admin > Edit Employee */
+        .state('admin.editEmployee', {
+            url:'/employee/edit/:id',
+            templateUrl:'views/employee-edit.ejs',
+            controller: 'EditEmployeeCtrl'
+        })
+
         .state('admin.projects', {
             url: '/projects',
             templateUrl: 'views/projects.ejs',
@@ -32,12 +46,49 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: 'views/project-add.ejs',
             controller: 'AddProjectCtrl'
         })
+        /* Admin > View Project */
+        .state('admin.viewProject', {
+            url: '/project/view/:id',
+            templateUrl: 'views/project-view.ejs',
+            controller: 'ViewProjectCtrl'
+        })
+
+        /* Admin > Edit Project */
+        .state('admin.editProject', {
+            url:'/project/edit/:id',
+            templateUrl:'views/project-edit.ejs',
+            controller: 'EditProjectCtrl'
+        })
         .state('admin.assign', {
             url: '/assign',
             templateUrl: 'views/assignProject.ejs',
             controller: 'AssignCtrl'
         })
-
+        .state('login', {
+            url: '/login',
+            templateUrl: 'views/login.ejs',
+            controller: 'LoginCtrl'
+        })
+        .state('employee', {
+            url: '/employee',
+            templateUrl: 'views/employee-sidebar.ejs',
+            controller: 'SideCtrl'
+        })
+        .state('employee.manage', {
+            url: '/manage',
+            templateUrl: 'views/projects.ejs',
+            controller: 'ManageCtrl'
+        })
+        .state('employee.viewProject', {
+            url: '/project/view/:id',
+            templateUrl: 'views/project-view.ejs',
+            controller: 'ViewProjectCtrl'
+        })
+        /*.state('employee.projects', {
+            url: '/employee/projects',
+            templateUrl: 'views/login.ejs',
+            controller: 'LoginCtrl'
+        })*/
 
 });
 
@@ -95,3 +146,4 @@ chartsApp.config(['$routeProvider',
     }]);
 
 */
+

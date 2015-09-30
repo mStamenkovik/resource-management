@@ -1,0 +1,21 @@
+
+<div class="col-md-2">
+    <nav  class="nav navbar-nav">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" ng-class="{active : isActive('/employee')}">
+                <a ui-sref="employee">Overview</a></li>
+            <li role="presentation" ng-class="{active : isActive('/employee/manage')}">
+                <a ui-sref=".manage">Manage projects</a></li>
+            <li role="presentation" ng-class="{active : isActive('/employee/projects')}">
+                <a ui-sref=".projects">Projects</a></li>
+           <!-- <li role="presentation" ng-class="{active : isActive('/admin/assign')}">
+                <a ui-sref=".assign">Assign project</a></li>-->
+        </ul>
+    </nav>
+</div>
+<div class="col-md-9" ui-view>
+</div>
+
+<!--
+<li><a ui-sref="home" ui-sref-active="active">Home</a></li>
+-->

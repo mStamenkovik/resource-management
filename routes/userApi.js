@@ -10,7 +10,7 @@ var User = userModel.User;
 exports.authenticateUser = function(req, res){
     var username = req.body.username;
     var password = req.body.password;
-  /*  console.log(username + " " + password);*/
+   console.log(username + " " + password);
     new User()
         .query('where', 'username', '=', username)
         .fetch()

@@ -1,8 +1,8 @@
 /**
  * Created by Polar Cape on 16-Sep-15.
  */
-chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$routeParams', '$rootScope', '$route',
-                   function($scope, UserFactory, $location, $routeParams, $rootScope, $route){
+chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$rootScope',
+                   function($scope, UserFactory, $location, $rootScope){
      $scope.user = {};
 
     if(sessionStorage.loggedIn){
@@ -13,15 +13,14 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$routeP
             $location.path("admin/employees");
         }
         else {
-            $location.path("projects");
+            $location.path("employee");
         }
-
     }
 
     $scope.login = function(){
         UserFactory.authenticate($scope.user, function(res){
             if(res.type == true){
-                //console.log("Res type: " + res.type);
+                console.log("Res type: " + res.type);
                 $scope.loggedIn = true;
                 sessionStorage.loggedIn = $scope.loggedIn;
                 sessionStorage.user = JSON.stringify(res.data);
@@ -30,7 +29,6 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$routeP
             else {
                 $scope.message = res.data;
             }
-
         });
     };
 

@@ -5,13 +5,13 @@
     <title>Chart Project</title>
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-
+    <link rel='stylesheet' href='../angular-loading-bar/build/loading-bar.css' type='text/css' media='all' />
 
 </head>
-<body ng-app="chartsApp" ng-controller="SideCtrl">
+<body ng-app="chartsApp">
 <div >
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" ng-controller="navbarCtrl">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -83,6 +83,7 @@
 <script src="../angular-route/angular-route.min.js"></script>
 <script src="../jquery/dist/jquery.js"></script>
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+<script type='text/javascript' src='../angular-loading-bar/build/loading-bar.min.js'></script>
 
 <!-- app config -->
 <script src="../app.js"></script>
@@ -93,6 +94,7 @@
 <script src="../controllers/employeeController.js"></script>
 <script src="../controllers/addEmployeeController.js"></script>
 <script src="../controllers/editEmployeeController.js"></script>
+<script src="../controllers/managerController.js"></script>
 
 <!-- projects controllers definition -->
 <script src="../controllers/projectController.js"></script>
@@ -103,6 +105,7 @@
 <!-- login controllers -->
 <script src="../controllers/loginController.js"></script>
 <script src="../controllers/sideController.js"></script>
+<script src="../controllers/navbarController.js"></script>
 
 <!-- services definition -->
 <script src="../services/employeeFactory.js"></script>

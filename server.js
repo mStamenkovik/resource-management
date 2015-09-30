@@ -10,8 +10,8 @@ var cookieParser = require('cookie-parser');
 var app = express();
 
 var routes = require('./routes');
-var api = require('./routes/employeeApi');
-var projectApi = require('./routes/projectApi');
+//var api = require('./routes/employeeApi');
+//var projectApi = require('./routes/projectApi');
 var userApi = require('./routes/userApi');
 
 //app.configure(function(){
@@ -38,26 +38,26 @@ app.get('/', routes.index);
 
 // JSON API
 // EMPLOYEES API ====================================================
-app.get('/api/employees', api.employees);
-app.post('/api/employees', api.addEmployee);
-
-app.get('/api/employee/:id', api.employee);
-app.delete('/api/employee/:id', api.deleteEmployee);
-app.put('/api/employee/:id', api.updateEmployee);
+//app.get('/api/employees', api.employees);
+//app.post('/api/employees', api.addEmployee);
+//
+//app.get('/api/employee/:id', api.employee);
+//app.delete('/api/employee/:id', api.deleteEmployee);
+//app.put('/api/employee/:id', api.updateEmployee);
 
 // PROJECTS API =====================================================
-app.get('/api/projects', projectApi.projects);
-app.post('/api/projects', projectApi.addProject);
-
-app.get('/api/project/:id', projectApi.project);
-
-app.put('/api/project/:id', projectApi.updateProject);
-app.put('/api/project/done/:id', projectApi.markDoneProject);
-
-app.delete('/api/project/:id', projectApi.deleteProject);
-app.get('/api/project/completed/:type', projectApi.getByCompletition);
-
-app.post('/api/project/assign', projectApi.assignEmployee);
+//app.get('/api/projects', projectApi.projects);
+//app.post('/api/projects', projectApi.addProject);
+//
+//app.get('/api/project/:id', projectApi.project);
+//
+//app.put('/api/project/:id', projectApi.updateProject);
+//app.put('/api/project/done/:id', projectApi.markDoneProject);
+//
+//app.delete('/api/project/:id', projectApi.deleteProject);
+//app.get('/api/project/completed/:type', projectApi.getByCompletition);
+//
+//app.post('/api/project/assign', projectApi.assignEmployee);
 
 
 // USERS API =========================================================
