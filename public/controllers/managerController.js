@@ -1,13 +1,18 @@
 
-chartsApp.controller('ManageCtrl', ['$scope', '$location', 'ProjectService', 'ProjectsFactory',
-    function($scope, $location, ProjectService, ProjectsFactory){
+chartsApp.controller('ManageCtrl', ['$scope', '$location', 'ProjectService', 'ProjectsFactory', 'UserService',
+    function($scope, $location, ProjectService, ProjectsFactory, UserService){
 
-       ////get managerId
-/*        var projects = ProjectService.getProjectsByManagement().$promise.then(function (data){
-            $scope.projects = data;
-        }, function(error){
-            alert("Error:  " + error.data);
-        });*/
+          UserService.getManagerByUserId().$promise.then(function (data){
+              var manager = data;
+              ProjectService.getProjectsByManagement(manager.id).$promise.then(function (data){
+                 $scope.projects = data;
+             }, function(error){
+                 alert("Error:  " + error.data);
+             });
+
+         }, function(error){
+             alert("Error:  " + error.data);
+         });
 
         $scope.viewProject = function(id){
             $location.path('/employee/project/view/' + id);
@@ -21,10 +26,10 @@ chartsApp.controller('ManageCtrl', ['$scope', '$location', 'ProjectService', 'Pr
          return true;
        };
 
-        var projects = ProjectsFactory.query().$promise.then(function (data){
+       /* var projects = ProjectsFactory.query().$promise.then(function (data){
             $scope.projects = data;
         }, function(error){
             alert("Error:  " + error.data);
         });
-
+*/
     }]);

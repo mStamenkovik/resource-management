@@ -8,3 +8,13 @@ chartsApp.factory('UserFactory', function ($resource) {
         delete: { method: 'DELETE', params: {id: '@id'} }
     })
 });
+
+chartsApp.service('UserService', ['$http', '$resource',  function($http, $resource) {
+
+    this.getManagerByUserId = function(){
+        var res = $resource('http://10.10.20.84:8080/data/employees/user');
+        return res.get();
+    };
+
+
+}]);

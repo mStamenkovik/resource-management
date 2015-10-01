@@ -27,14 +27,11 @@ chartsApp.factory('ProjectFactory', function ($resource) {
 
 //factory for assigning an employee to a project
 chartsApp.factory('ProjectAssignFactory', function ($resource) {
-    return $resource('http://10.10.20.84:8080/data/projects/:id/employees', {}, {
+    return $resource('http://10.10.20.84:8080/data/projects/:id/employees/:employeeId/effort', {}, {
         update: {
             method: 'POST'
-            , headers : {
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            }
-            ,params: {id: '@id'}
-        }
+            ,params: {id: '@id', employeeId: '@employeeId'}
+        },
     })
 });
 
@@ -42,14 +39,14 @@ chartsApp.factory('ProjectAssignFactory', function ($resource) {
 
 chartsApp.service('ProjectService', ['$http', '$resource',  function($http, $resource) {
 
-  /*  this.getProjectsByCompletition = function(type){
-        var res = $resource('/api/project/completed/:type', {type: '@type'});
-        return res.query({type: type});
-    };*/
+    this.getProjectsByManagement = function(id){
+        var res = $resource('http://10.10.20.84:8080/data/employees/:id/projects/manager', {id: '@id'});
+        return res.query({id: id});
+    };
 
-    this.getProjectsByManagement = function(managerId){
-        var res = $resource('/api/project/completed/:type', {type: '@type'});
-        return res.query({type: type});
+    this.getEffortForProject = function(id){
+        var res = $resource('http://10.10.20.84:8080/data/projects/:id/employees/effort', {id: '@id'});
+        return res.query({id: id});
     };
 
 }]);

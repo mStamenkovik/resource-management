@@ -1,30 +1,117 @@
 <div class="container">
     <h3>Manage Project</h3>
     <h4>{{ project.name }}</h4>
-    Date from: <label>{{ project.fromDate }}</label>
-    Date to: <label>{{ project.toDate }}</label>
+    Date from: <label>{{ project.fromDate | date}}</label>
+    Date to: <label>{{ project.toDate | date}}</label>
     <h4>Assign employee:</h4>
     <div class="row">
+        <div class="form-group">
             <div class="form-group">
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=".col-xs-2">
+                <div class="col-xs-2">
+                    <select  class="form-control"  ng-model="selectEmployee" ng-options="employee as employee.name + ' ' + employee.lastName for employee in employees"></select>
                 </div>
             </div>
            <div class="form-group">
-                <div class="col-xs-3">
-                    <select  class="form-control"  ng-model="projectRole" ng-options="role for role in roles"></select>
+                <div class="col-xs-2">
+                    <select  class="form-control"  ng-model="selectProjectRole" ng-options="role.name for role in roles"></select>
                 </div>
            </div>
             <div class="form-group">
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder=".col-xs-4">
+                <div class="col-xs-2">
+                    <input type="number" min="1" ng-model="workingHours" class="form-control" placeholder="Input working hours">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-xs-3">
+                <div class="col-xs-2">
+                    <input type="date"  class="form-control" ng-model="fromDate" placeholder="Input working hours">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <input type="date"  class="form-control" ng-model="toDate" placeholder="Input working hours">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-2">
                     <button type="button" ng-click="addEmployee()" class="btn btn-info">Add Employee</button>
                 </div>
             </div>
+        </div>
     </div>
-
+    <div class="row top-buffer">
+        <table class="table table-condensed table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Job Position</th>
+                    <th>Working hours</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Remove</th>
+                </tr>
+                <tr ng-repeat="eff in effort">
+                    <td>
+                        {{ eff.employee.name + ' ' + eff.employee.lastName }}
+                    </td>
+                    <td>
+                        {{ eff.effortInformation.role }}
+                    </td>
+                    <td>
+                        {{ eff.effortInformation.percent }}
+                    </td>
+                    <td>
+                        {{ eff.effortInformation.fromDate | date }}
+                    </td>
+                    <td>
+                        {{ eff.effortInformation.toDate | date }}
+                    </td>
+                    <td>
+                        <button type="button" ng-click="removeEmployee($index)" class="btn btn-danger">x</button>
+                    </td>
+                </tr>
+        </table>
+    </div>
+    <div class="row">
+        <button type="submit" ng-click="saveTeam()" class="btn btn-success pull-right"><span class="glyphicon glyphicon-save"></span>  Save</button>
+    </div>
+    <div class="row top-buffer">
+        <h3>Assigned Employees</h3>
+        <table class="table table-condensed table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Job Position</th>
+                <th>Working hours</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Edit</th>
+                <th>Save</th>
+                <th>Remove</th>
+            </tr>
+            <tr ng-repeat="eff in assignedEmployees">
+                <td>
+                    {{ eff.effort.employee.name + ' ' + eff.effort.employee.lastName }}
+                </td>
+                <td>
+                    {{ eff.role }}
+                </td>
+                <td>
+                    {{ eff.percent }}
+                </td>
+                <td>
+                    {{ eff.fromDate | date }}
+                </td>
+                <td>
+                    {{ eff.toDate | date }}
+                </td>
+                <td>
+                    <button type="button" ng-click="editEmployee(employee.id)" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
+                </td>
+                <td>
+                    <button type="submit" ng-click="saveTeam()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span></button>
+                </td>
+                <td>
+                    <button type="button" ng-click="removeEmployee($index)" class="btn btn-danger">x</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
