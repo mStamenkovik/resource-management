@@ -88,26 +88,26 @@
             </tr>
             <tr ng-repeat="eff in assignedEmployees">
                 <td>
-                    {{ eff.effort.employee.name + ' ' + eff.effort.employee.lastName }}
+                    <span ng-hide="editing">{{ eff.effort.employee.name + ' ' + eff.effort.employee.lastName }}</span>
+                    <input ng-show="editing" type="text" ng-model="editEffort.employee" placeholder="Employee" ng-required />
                 </td>
                 <td>
-                    {{ eff.role }}
+                     <span>{{ eff.role }}</span>
                 </td>
                 <td>
-                    {{ eff.percent }}
+                     <span>{{ eff.percent }}</span>
                 </td>
                 <td>
-                    {{ eff.fromDate | date }}
+                     <span>{{ eff.fromDate | date }}</span>
                 </td>
                 <td>
-                    {{ eff.toDate | date }}
+                     <span>{{ eff.toDate | date }}</span>
                 </td>
                 <td>
-                    <button type="button" ng-click="editEmployee(employee.id)" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="button" ng-hide="editing" ng-click="editing = true"  class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button type="submit" ng-show="editing" ng-click="editing = false" class="btn btn-success"><span class="glyphicon glyphicon-save"></span></button>
                 </td>
-                <td>
-                    <button type="submit" ng-click="saveTeam()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span></button>
-                </td>
+
                 <td>
                     <button type="button" ng-click="removeEmployee($index)" class="btn btn-danger">x</button>
                 </td>

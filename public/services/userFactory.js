@@ -1,6 +1,8 @@
 /**
  * Created by Polar Cape on 16-Sep-15.
  */
+var path = 'http://10.10.20.84:8080';
+
 chartsApp.factory('UserFactory', function ($resource) {
     return $resource('/api/user/authenticate', {}, {
         authenticate: { method: 'POST' },
@@ -12,7 +14,7 @@ chartsApp.factory('UserFactory', function ($resource) {
 chartsApp.service('UserService', ['$http', '$resource',  function($http, $resource) {
 
     this.getManagerByUserId = function(){
-        var res = $resource('http://10.10.20.84:8080/data/employees/user');
+        var res = $resource(path + '/data/employees/user');
         return res.get();
     };
 

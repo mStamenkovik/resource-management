@@ -1,10 +1,12 @@
 /**
  * Created by Polar Cape on 10-Sep-15.
  */
+var path = "http://10.10.20.84:8080";
+
 
 //factory for adding an employee and getting all the list of all employees
 chartsApp.factory('EmployeesFactory', function ($resource) {
-    return $resource('http://10.10.20.84:8080/data/employees', {}, {
+    return $resource(path + '/data/employees', {}, {
         query: { method: 'GET',
                  isArray: true
                 },
@@ -15,7 +17,7 @@ chartsApp.factory('EmployeesFactory', function ($resource) {
 //factory for getting an employee by id, updating an employee and deleting(setting valid bit to 0)
 chartsApp.factory('EmployeeFactory', function ($resource) {
 
-    return $resource('http://10.10.20.84:8080/data/employees/:id', {}, {
+    return $resource(path + '/data/employees/:id', {}, {
         show: { method: 'GET' },
         update: { method: 'PUT'
                     /*,headers : {
@@ -27,8 +29,3 @@ chartsApp.factory('EmployeeFactory', function ($resource) {
     })
 });
 
-//query, create
-// http://10.10.20.84:8080/data/employees
-
-//show, update, delete
-//http://10.10.20.84:8080/data/employees/:id
