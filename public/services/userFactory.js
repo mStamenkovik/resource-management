@@ -4,10 +4,14 @@
 var path = 'http://10.10.20.84:8080';
 
 chartsApp.factory('UserFactory', function ($resource) {
-    return $resource('/api/user/authenticate', {}, {
-        authenticate: { method: 'POST' },
-        update: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'DELETE', params: {id: '@id'} }
+    return $resource(path + '/oauth/token', {}, {
+        authenticate: { method: 'POST',
+         headers: {
+             'Authorization' : 'Basic Y2xpZW50YXBwOjEyMzQ1Ng==',
+             'Content-Type' : 'application/x-www-form-urlencoded',
+             'Accept' : 'application/json'
+         }
+        }
     })
 });
 

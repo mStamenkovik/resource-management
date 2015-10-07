@@ -9,6 +9,8 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$rootSc
         $scope.user = JSON.parse(sessionStorage.user);
         $scope.loggedIn = sessionStorage.loggedIn;
        // console.log("Login user role: " + $scope.user.role);
+
+
         if($scope.user.role == "admin" ){
             $location.path("admin/employees");
         }
@@ -17,19 +19,23 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', '$location', '$rootSc
         }
     }
 
+
+
     $scope.login = function(){
-        UserFactory.authenticate($scope.user, function(res){
-            if(res.type == true){
-                console.log("Res type: " + res.type);
-                $scope.loggedIn = true;
-                sessionStorage.loggedIn = $scope.loggedIn;
-                sessionStorage.user = JSON.stringify(res.data);
-                window.location.reload();
-            }
-            else {
-                $scope.message = res.data;
-            }
+
+        UserFactory.authenticate($.param({
+                grant_type: 'password',
+                username: $scope.user.username,
+                password: $scope.user.password
+        })).$promise.then(function (data){
+            sessionStorage.token = data.access_token;
+
+            //alert("Ok " + data);
+            //console.log(data);
+        }, function(error){
+            alert("Error:  " + error.data);
         });
+
     };
 
 

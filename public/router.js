@@ -9,84 +9,84 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('admin', {
             url: '/admin',
-            templateUrl: 'views/admin-sidebar.ejs',
+            templateUrl: 'views/admin-sidebar.html',
             controller: 'SideCtrl'
         })
         .state('admin.employees', {
             url: '/employees',
-            templateUrl: 'views/employeesList.ejs',
+            templateUrl: 'views/employeesList.html',
             controller: 'EmployeeCtrl'
         })
         .state('admin.employee', {
             url: '/employee',
-            templateUrl: 'views/employee-add.ejs',
+            templateUrl: 'views/employee-add.html',
             controller: 'AddEmployeeCtrl'
         })
             /* Admin > View Employee */
         .state('admin.viewEmployee', {
             url: '/employee/view/:id',
-            templateUrl: 'views/employee-view.ejs',
+            templateUrl: 'views/employee-view.html',
             controller: 'ViewEmployeeCtrl'
         })
 
             /* Admin > Edit Employee */
         .state('admin.editEmployee', {
             url:'/employee/edit/:id',
-            templateUrl:'views/employee-edit.ejs',
+            templateUrl:'views/employee-edit.html',
             controller: 'EditEmployeeCtrl'
         })
 
         .state('admin.projects', {
             url: '/projects',
-            templateUrl: 'views/projects.ejs',
+            templateUrl: 'views/projects.html',
             controller: 'ProjectCtrl'
         })
         .state('admin.project', {
             url: '/project',
-            templateUrl: 'views/project-add.ejs',
+            templateUrl: 'views/project-add.html',
             controller: 'AddProjectCtrl'
         })
         /* Admin > View Project */
         .state('admin.viewProject', {
             url: '/project/view/:id',
-            templateUrl: 'views/project-view.ejs',
+            templateUrl: 'views/project-view.html',
             controller: 'ViewProjectCtrl'
         })
 
         /* Admin > Edit Project */
         .state('admin.editProject', {
             url:'/project/edit/:id',
-            templateUrl:'views/project-edit.ejs',
+            templateUrl:'views/project-edit.html',
             controller: 'EditProjectCtrl'
         })
         .state('admin.assign', {
             url: '/assign',
-            templateUrl: 'views/assignProject.ejs',
+            templateUrl: 'views/assignProject.html',
             controller: 'AssignCtrl'
         })
         .state('login', {
             url: '/login',
-            templateUrl: 'views/login.ejs',
+            templateUrl: 'views/login.html',
             controller: 'LoginCtrl'
         })
         .state('employee', {
             url: '/employee',
-            templateUrl: 'views/employee-sidebar.ejs',
+            templateUrl: 'views/employee-sidebar.html',
             controller: 'SideCtrl'
         })
         .state('employee.manage', {
             url: '/manage',
-            templateUrl: 'views/projects.ejs',
+            templateUrl: 'views/projects.html',
             controller: 'ManageCtrl'
         })
         .state('employee.manageProject', {
             url: '/manage/project/:id',
-            templateUrl: 'views/manageProject.ejs',
+            templateUrl: 'views/manageProject.html',
             controller: 'ManageProjectCtrl'
         })
         .state('employee.viewProject', {
             url: '/project/view/:id',
-            templateUrl: 'views/project-view.ejs',
+            templateUrl: 'views/project-view.html',
             controller: 'ViewProjectCtrl'
         })
         /*.state('employee.projects', {

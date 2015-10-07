@@ -7,13 +7,21 @@ chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
     return {
         'request': function (config) {
 
+           // 'Authorization' : 'Basic Y2xpZW50YXBwOjEyMzQ1Ng==',
             if(angular.isDefined(sessionStorage.user)){
                 var session_user = JSON.parse(sessionStorage.user);
                 var user = session_user.username + ':' + session_user.password;
                 var encodedUser = $base64.encode(user);
 
-                config.headers['Authorization'] = 'Basic ' + encodedUser;
+                //config.headers['Authorization'] = 'Basic Y2xpZW50YXBwOjEyMzQ1Ng==';
             }
+
+            //get token
+           /* if(angular.isDefined(sessionStorage.token)){
+                var token = sessionStorage.token;
+                config.headers['Authorization'] = 'Bearer ' + token;
+            }*/
+
 
             //config.headers['Authorization'] = 'Basic YWRtaW46YWRtaW4=';
             //config.headers['Accept'] = 'application/json;odata=verbose';
