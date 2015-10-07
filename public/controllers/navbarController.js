@@ -5,14 +5,12 @@
 
 chartsApp.controller('navbarCtrl', ['$scope','UserFactory', '$location', function($scope, UserFactory, $location) {
 
-    if (sessionStorage.loggedIn) {
+    if (angular.isDefined(sessionStorage.token)) {
         $scope.userLogged = true;
-        //console.log("parse: " + sessionStorage.user);
 
-        $scope.user = JSON.parse(sessionStorage.user);
-        $scope.loggedIn = sessionStorage.loggedIn;
+        $scope.loggedIn = true;
         //console.log("role: " + $scope.user.role);
-        if ($scope.user.role == "admin") {
+        if (sessionStorage.userRole == "admin") {
             $scope.adminLogged = true;
         }
         else {
@@ -25,7 +23,7 @@ chartsApp.controller('navbarCtrl', ['$scope','UserFactory', '$location', functio
     }
 
     $scope.logout = function () {
-        delete sessionStorage.user;
+        delete sessionStorage.token;
         delete sessionStorage.loggedIn;
         $scope.loggedIn = false;
         $scope.userLogged = false;

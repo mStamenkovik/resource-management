@@ -1,26 +1,24 @@
 /**
  * Created by Polar Cape on 10-Sep-15.
  */
-chartsApp = angular.module('chartsApp', [ 'ngResource', 'ui.router', 'base64', 'angular-loading-bar']);
+chartsApp = angular.module('chartsApp', [ 'ngResource', 'ui.router', 'base64', 'angular-loading-bar', 'satellizer']);
 
 chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
     return {
         'request': function (config) {
+          // console.log("Def: " + angular.isDefined(sessionStorage.token));
 
-           // 'Authorization' : 'Basic Y2xpZW50YXBwOjEyMzQ1Ng==',
-            if(angular.isDefined(sessionStorage.user)){
-                var session_user = JSON.parse(sessionStorage.user);
+            if(angular.isDefined(sessionStorage.token)){
+                /*var session_user = JSON.parse(sessionStorage.user);
                 var user = session_user.username + ':' + session_user.password;
-                var encodedUser = $base64.encode(user);
+                var encodedUser = $base64.encode(user);*/
 
-                //config.headers['Authorization'] = 'Basic Y2xpZW50YXBwOjEyMzQ1Ng==';
+               var token = sessionStorage.token;
+                /*console.log("TOKEN: " + token);*/
+                config.headers['Authorization'] = 'Bearer ' + token;
             }
 
-            //get token
-           /* if(angular.isDefined(sessionStorage.token)){
-                var token = sessionStorage.token;
-                config.headers['Authorization'] = 'Bearer ' + token;
-            }*/
+
 
 
             //config.headers['Authorization'] = 'Basic YWRtaW46YWRtaW4=';
@@ -32,8 +30,10 @@ chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
 }]);
 
 
-chartsApp.config(['$httpProvider',
-    function($httpProvider) {
+chartsApp.config(['$httpProvider', '$authProvider',
+    function($httpProvider, $authProvider) {
+
+        //$authProvider.loginUrl = 'http://10.10.20.84:8080/oauth/token';
 
         $httpProvider.interceptors.push('HRHttpInterceptors');
 

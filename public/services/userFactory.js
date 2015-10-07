@@ -15,6 +15,7 @@ chartsApp.factory('UserFactory', function ($resource) {
     })
 });
 
+/////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
 chartsApp.service('UserService', ['$http', '$resource',  function($http, $resource) {
 
     this.getManagerByUserId = function(){
@@ -22,5 +23,8 @@ chartsApp.service('UserService', ['$http', '$resource',  function($http, $resour
         return res.get();
     };
 
-
+    this.getRole = function(){
+        var res = $resource(path + '/data/employees/user/role');
+        return res.get();
+    };
 }]);
