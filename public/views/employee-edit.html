@@ -1,19 +1,25 @@
-<div class="container">
-    <h3>Edit Employee:</h3>
-<form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">First name</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" ng-model="employee.name">
+
+<h1 class="page-header">Edit Employee:</h1>
+
+
+<div class="col-md-6" >
+    <div class="well">
+        <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">First name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name" ng-model="employee.name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Last name</label>
+                    <input type="text"  class="form-control" id="exampleInputPassword1" placeholder="Last name" ng-model="employee.lastName">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Job Description</label>
+                    <input type="text"  class="form-control" id="exampleInputPassword1" placeholder="Job Description" ng-model="employee.jobDescription">
+                </div>
+                <button type="submit" ng-click="updateEmployee()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
+                <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Last name</label>
-        <input type="text"  class="form-control" id="exampleInputPassword1" placeholder="Last name" ng-model="employee.lastName">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Job Description</label>
-        <input type="text"  class="form-control" id="exampleInputPassword1" placeholder="Job Description" ng-model="employee.jobDescription">
-    </div>
-    <button type="submit" ng-click="updateEmployee()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
-    <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
-</form>
 </div>
+

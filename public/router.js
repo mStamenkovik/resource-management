@@ -59,10 +59,10 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
             templateUrl:'views/project-edit.html',
             controller: 'EditProjectCtrl'
         })
-        .state('admin.assign', {
-            url: '/assign',
-            templateUrl: 'views/assignProject.html',
-            controller: 'AssignCtrl'
+        .state('admin.overview', {
+            url: '/overview',
+            templateUrl: 'views/overview.html',
+
         })
         .state('login', {
             url: '/login',
@@ -97,58 +97,4 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
 
 });
 
-/*
-chartsApp.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.
-            when('/admin/employees', {
-                templateUrl: 'views/employeesList.ejs',
-                controller: 'EmployeeCtrl'
-            }).
-            when('/admin/employee/edit/:id', {
-                templateUrl: 'views/employee-edit.ejs',
-                controller: 'EditEmployeeCtrl'
-            }).
-            when('/admin/employee', {
-                templateUrl: 'views/employee-add.ejs',
-                controller: 'AddEmployeeCtrl'
-            }).
-            when('/admin/projects', {
-                templateUrl: 'views/projects.ejs',
-                controller: 'ProjectCtrl'
-            }).
-            when('/admin/project/edit/:id', {
-                templateUrl: 'views/project-edit.ejs',
-                controller: 'EditProjectCtrl'
-            }).
-            when('/admin/employee/view/:id', {
-                templateUrl: 'views/employee-view.ejs',
-                controller: 'ViewEmployeeCtrl'
-            }).
-            when('/admin/project/view/:id', {
-                templateUrl: 'views/project-view.ejs',
-                controller: 'ViewProjectCtrl'
-            }).
-            when('/admin/project', {
-                templateUrl: 'views/project-add.ejs',
-                controller: 'AddProjectCtrl'
-            }).
-            when('/admin/assign', {
-                templateUrl: 'views/assignProject.ejs',
-                controller: 'AssignCtrl'
-            }).
-            when('/login', {
-                templateUrl: 'views/login.ejs',
-                controller: 'LoginCtrl'
-            }).
-            when('/projects', {
-                templateUrl: 'views/projects.ejs',
-                controller: 'ProjectCtrl'
-            }).
-            otherwise({
-                redirectTo: '/'
-            });
-    }]);
-
-*/
 

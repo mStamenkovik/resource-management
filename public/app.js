@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 10-Sep-15.
  */
-chartsApp = angular.module('chartsApp', [ 'ngResource', 'ui.router', 'base64', 'angular-loading-bar', 'satellizer']);
+chartsApp = angular.module('chartsApp', [ 'ngResource', 'ui.router', 'base64', 'angular-loading-bar', 'ui.bootstrap']);
 
 chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
     return {
@@ -30,8 +30,8 @@ chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
 }]);
 
 
-chartsApp.config(['$httpProvider', '$authProvider',
-    function($httpProvider, $authProvider) {
+chartsApp.config(['$httpProvider',
+    function($httpProvider) {
 
         //$authProvider.loginUrl = 'http://10.10.20.84:8080/oauth/token';
 

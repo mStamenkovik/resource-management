@@ -1,32 +1,38 @@
-<div class="container">
-    <h3>Edit Project:</h3>
-    <form>
-        <div class="form-group">
-            <label>Project Name</label>
-            <input type="text" class="form-control" placeholder="Project Name" ng-model="project.name">
-        </div>
-        <div class="form-group">
-            <label>Description</label>
-            <textarea type="text"  class="form-control"  placeholder="Project Description" ng-model="project.description"></textarea>
-        </div>
-        <div class="form-group">
-            <label>Date from:</label>
-            <input type="date"  class="form-control"  ng-model="project.fromDate">
-        </div>
-        <div class="form-group">
-            <label>Date to:</label>
-            <input type="date"  class="form-control" ng-model="project.toDate">
-        </div>
-        <div class="form-group">
-            <label>Project Status</label>
-            <input type="text" class="form-control" ng-model="project.status">
-        </div>
-        <div class="form-group">
-            <h4>Select project manager</h4>
-            <select class="form-control" ng-model="selectManager" ng-options="employee as employee.name + ' ' + employee.lastName for employee in employees">
-            </select>
-        </div>
-        <button type="submit" ng-click="updateProject()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
-        <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
-    </form>
+<h1 class="page-header">Edit Project:</h1>
+
+<div class="col-md-6">
+    <div class="well">
+        <form>
+                <div class="form-group">
+                    <label>Project Name</label>
+                    <input type="text" class="form-control" placeholder="Project Name" ng-model="project.name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea type="text"  class="form-control"  placeholder="Project Description" ng-model="project.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Date from:</label>
+                    <input type="date"  class="form-control"  ng-model="project.fromDate">
+                </div>
+                <div class="form-group">
+                    <label>Date to:</label>
+                    <input type="date"  class="form-control" ng-model="project.toDate">
+                </div>
+                <div class="form-group">
+                    <label>Project Status</label>
+                    <input type="text" class="form-control" ng-model="project.status">
+                </div>
+                <div class="form-group">
+                    <h4>Select project manager</h4>
+                    <select class="form-control" ng-model="selectManager" ng-options="employee as employee.name + ' ' + employee.lastName for employee in employees">
+                    </select>
+                </div>
+                <button type="submit" ng-click="updateProject()" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>  Save</button>
+                <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
+        </form>
+  </div>
 </div>
+
+
+

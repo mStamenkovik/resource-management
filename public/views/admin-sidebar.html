@@ -1,23 +1,59 @@
+<div class="vertical_nav">
 
-<div class="col-md-2">
-    <nav  class="nav navbar-nav">
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" ng-class="{active : isActive('/admin')}">
-                <a ui-sref="admin">Overview</a></li>
-            <li role="presentation" ng-class="{active : isActive('/admin/employees')}">
-                <a ui-sref=".employees"> List of employees</a></li>
-            <li role="presentation" ng-class="{active : isActive('/admin/employee')}">
-                <a ui-sref=".employee">Add new employee</a></li>
-            <li role="presentation" ng-class="{active : isActive('/admin/projects')}">
-                <a ui-sref=".projects">List of projects</a></li>
-            <li role="presentation" ng-class="{active : isActive('/admin/project')}">
-                <a ui-sref=".project">Add new project</a></li>
+    <ul id="js-menu"  class="menu">
 
-        </ul>
-    </nav>
+        <!--<li class="menu&#45;&#45;item">
+            <label class="menu&#45;&#45;link" title="User">
+                <i class="menu&#45;&#45;icon  fa fa-fw fa-user"></i>
+                <span class="menu&#45;&#45;label">{{ user.username }}</span>
+            </label>
+        </li>-->
+
+        <li class="menu--item" ng-class="{active : isActive('/admin')}">
+            <a ui-sref=".overview" class="menu--link" >
+                <i class="menu--icon  fa fa-fw fa-list-alt"></i>
+                <span class="menu--label">Overview</span>
+            </a>
+        </li>
+
+        <li class="menu--item  menu--item__has_sub_menu" ng-class="{active : isActive('/admin/employees')}">
+            <a ui-sref=".employees" class="menu--link" >
+                <i class="menu--icon  fa fa-fw fa-users"></i>
+                <span class="menu--label">List of employees</span>
+            </a>
+            <ul class="sub_menu">
+                <li class="sub_menu--item" ng-class="{active : isActive('/admin/employee')}">
+                    <a ui-sref=".employee" class="sub_menu--link">Add new employee</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu--item  menu--item__has_sub_menu" ng-class="{active : isActive('/admin/projects')}">
+            <a ui-sref=".projects" class="menu--link" >
+                <i class="menu--icon  fa fa-fw fa-briefcase"></i>
+                <span class="menu--label">List of projects</span>
+            </a>
+            <ul class="sub_menu">
+                <li class="sub_menu--item" ng-class="{active : isActive('/admin/project')}">
+                    <a ui-sref=".project" class="sub_menu--link">Add new project</a>
+                </li>
+            </ul>
+        </li>
+
+
+    </ul>
+
+    <button id="collapse_menu" class="collapse_menu">
+        <i class="collapse_menu--icon  fa fa-fw"></i>
+        <span class="menu--label">Recolher menu</span>
+    </button>
+
 </div>
-<div class="col-md-9" ui-view>
+
+<div  ui-view>
 </div>
+
+
 
 <!--
 <li><a ui-sref="home" ui-sref-active="active">Home</a></li>

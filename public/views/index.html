@@ -6,70 +6,203 @@
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel='stylesheet' href='../angular-loading-bar/build/loading-bar.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='../bootstrap/vendor/normalize/normalize.css' rel='stylesheet'>
+    <link href="../bootstrap/vendor/vertical-responsive-menu.css" rel="stylesheet">
+    <link href="../bootstrap/vendor/menu.css" rel="stylesheet">
+
 
 </head>
 <body ng-app="chartsApp">
 <div >
 
-    <nav class="navbar navbar-default" ng-controller="navbarCtrl">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img alt="Brand" src="../images/polar-cape-logo.png">
-            </div>
+  <!--===============================================================================================================================================================-->
+<header>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="navbarCtrl">
+    <button type="button" id="toggleMenu" ng-show="adminLogged" class="toggle_menu">
+        <i class="fa fa-bars"></i>
+    </button>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-show="userLogged" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        </button>
+        <a><img class="navbar-brand" alt="Brand" ng-src="../images/polar-cape-logo.png"></a>
+    </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a style="font-size: 26px; color: #333">Resource Management</a></li>
-                </ul>
-
-                <ul ng-show="userLogged" class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src=""> {{ user.username }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="">Another action</a></li>
-                            <li><a href="">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a ng-click="logout()">Logout</a></li>
-                        </ul>
+    <!-- Notification tab -->
+    <div class="collapse navbar-collapse" collapse="navCollapsed">
+        <ul class="nav navbar-top-links navbar-right" ng-show="userLogged">
+            <li class="dropdown" dropdown="">
+                <a  dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down" ></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages" role="menu">
+                    <li class="message-preview">
+                        <a>
+                            <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                <div class="media-body"> <div class="pull-right"><i class="fa fa-reply"></i></div>
+                                    <h5 class="media-heading"><strong>Berat Sulimani</strong></h5>
+                                    <p class="small text-muted">Designing the PolarCape logo.<br><i class="fa fa-clock-o">13:00 PM</i> </p>
+                                </div>
+                            </div>
+                        </a>
                     </li>
-
+                    <li class="divider"></li>
+                    <li class="message-preview">
+                        <a>
+                            <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                </span>
+                                <div class="media-body"> <div class="pull-right"><i class="fa fa-reply"></i></div>
+                                    <h5 class="media-heading"><strong>Monika</strong></h5>
+                                    <p class="small text-muted">Working with $scopes.<br><i class="fa fa-clock-o">19:18 PM</i> </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="message-preview">
+                        <a >
+                            <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                <div class="media-body"> <div class="pull-right"><i class="fa fa-check"></i></div>
+                                    <h5 class="media-heading"><strong>Atanas</strong></h5>
+                                    <p class="small text-muted">Working on Java and drinking coffee.<br><i class="fa fa-clock-o">13:00 PM</i> </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="text-center" class="message-footer">
+                        <a>Read All New Messages</a>
+                    </li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </li>
+            <li class="dropdown" dropdown="">
+                <a dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks" role="menu">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong> Berat {{ employee.name }}</strong>
+                                    <span class="pull-right text-muted"> Project Started</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">50% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Monika</strong>
+                                    <span class="pull-right text-muted"> Project in Process</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Atanas</strong>
+                                    <span class="pull-right text-muted"> Project Completed</span>
+                                </p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <li class="dropdown" dropdown="">
+                <a dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-comment fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts" role="menu">
+                    <li>
+                        <a>
+                            <div>
+                                <i style="color:limegreen" class="fa fa-comment fa-fw"></i> Atanas
+                                <span class="pull-right text-muted small">Available</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a>
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> Monika
+                                <span class="pull-right text-muted small">Not Available</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a>
+                            <div>
+                                <i style="color:limegreen" class="fa fa-comment fa-fw"></i> Berat Sulimani
+                                <span class="pull-right text-muted small">Available</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <li class="dropdown" dropdown="">
+                <a dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user" role="menu">
+                    <li><a><i class="fa fa-user fa-fw"></i> {{ user.username }}</a></li>
+                    <!-- Modal Sittings content -->
+                    <li><a><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
     </nav>
+    </header>
 
-    <div class="row">
-      <!-- <div class="col-md-2" >
+    <!--===============================================================================================================================================================-->
 
-            <nav  class="nav navbar-nav" ng-show="adminLogged">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" ng-class="{active : isActive('/admin')}">
-                        <a href="#/admin">Overview</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/employees')}">
-                        <a href="#/admin/employees">
-                            List of employees</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/employee')}">
-                        <a href="#/admin/employee">Add new employee</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/projects')}">
-                        <a href="#/admin/projects">List of projects</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/project')}">
-                        <a href="#/admin/project">Add new project</a></li>
-                    <li role="presentation" ng-class="{active : isActive('/admin/assign')}">
-                        <a href="#/admin/assign">Assign project</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-md-9" ng-view>
-        </div>-->
+    <div class="wrapper">
         <div ui-view></div>
     </div>
 
@@ -80,12 +213,12 @@
 <script src="../angular-resource/angular-resource.min.js"></script>
 <script src="../angular-ui-router/build/angular-ui-router.min.js"></script>
 <script src="../angular-base64/angular-base64.min.js"></script>
-<script src="../angular-route/angular-route.min.js"></script>
 <script src="../jquery/dist/jquery.js"></script>
-<script src="../satellizer/satellizer.js"></script>
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='../angular-loading-bar/build/loading-bar.min.js'></script>
-<script src="../satellizer/satellizer.js"></script>
+<script src="../bootstrap/dist/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
+<script src="../bootstrap/vendor/vertical-responsive-menu.js"></script>
+<!--<script src="../satellizer/satellizer.js"></script>-->
 
 <!-- app config -->
 <script src="../app.js"></script>

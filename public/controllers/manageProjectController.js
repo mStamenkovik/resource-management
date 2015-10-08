@@ -29,7 +29,7 @@ chartsApp.controller('ManageProjectCtrl', ['$scope', 'ProjectFactory', 'Employee
      $scope.project = data;
      $scope.project.fromDate = new Date(data.fromDate);
      $scope.project.toDate = new Date(data.toDate);
-        $scope.assignedEmployees = ProjectService.getEffortForProject($scope.project.id);
+        $scope.assignedEmployees = ProjectService.getEffortForProject($scope.project.id);  //////////////////////////promiseeeee
      }, function(error){
      alert("Error");
      });
