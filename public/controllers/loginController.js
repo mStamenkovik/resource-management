@@ -4,6 +4,7 @@
 chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$location', '$rootScope', '$state',
                    function($scope, UserFactory, UserService, $location, $rootScope, $state){
      $scope.user = {};
+     $scope.message = "";
 
             if (angular.isDefined(sessionStorage.token)) {
                 $scope.userLogged = true;
@@ -16,25 +17,13 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$loca
                       }
                     else {
                         $scope.adminLogged = false;
+                      $location.path("employee");
 
                      }
-                       }
-                     else {
-                           $location.path("login");
-                       }
-    /*if(sessionStorage.loggedIn){
-        $scope.user = JSON.parse(sessionStorage.user);
-        $scope.loggedIn = sessionStorage.loggedIn;
-       // console.log("Login user role: " + $scope.user.role);
-
-
-        if($scope.user.role == "admin" ){
-            $location.path("admin/employees");
-        }
-        else {
-            $location.path("employee");
-        }
-    }*/
+            }
+            else {
+                $location.path("login");
+            }
 
 
 
@@ -46,38 +35,26 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$loca
                 password: $scope.user.password
         })).$promise.then(function (data){
 
-             sessionStorage.token = data.access_token;
-                console.log("Session token: " + sessionStorage.token);
+                sessionStorage.token = data.access_token;
               UserService.getRole().$promise.then(function (data){
                   var role = "";
                   var i;
+
                   for (i = 0; i < 15; i++) {
                     if(angular.isDefined(data[i])) {
                         role += data[i];
-                        console.log(data[i]);
                     }
                   }
-            sessionStorage.userRole = role;
 
-                  $scope.userLogged = true;
-                  console.log("Role: " + role);
-                  if(role == 'ROLE_ADMIN'){
-                      //console.log("ADMIN");
-                      $location.path("admin");
-                  }
-                  else if(role == 'ROLE_USER'){
-                      //console.log("USER");
-                      $location.path("employee");
-                  }
+               sessionStorage.userRole = role;
+                  window.location.reload();
+
               }, function(error){
-                  alert("Error");
+                  alert("Error get role");
               });
-             //$state.go('employee', {});
-
-            //alert("Ok " + data);
-            //console.log(data);
         }, function(error){
-            alert("Error:  " + error.data);
+                $scope.message = "Bad credentials - Incorrect username/password"
+            //alert("Error:  " + error.data);
         });
 
     };

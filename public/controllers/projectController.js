@@ -7,16 +7,18 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
     $scope.tab = 1;
 
     $scope.checkIfAdminLoggedIn = function(){
-        if(sessionStorage.loggedIn) {
-            $scope.user = JSON.parse(sessionStorage.user);
-            $scope.loggedIn = sessionStorage.loggedIn;
-            //console.log("Project user role: " + $scope.user.role);
-            if($scope.user.role == "admin" ){
-                return true;
-            }
+        if(angular.isDefined(sessionStorage.token)){
+             if(angular.isDefined(sessionStorage.userRole)){
+                  if(sessionStorage.userRole == "ROLE_ADMIN"){
+                      return true;
+                  }
+                 else {
+                      return false;
+                  }
+             }
             else {
-               return false;
-            }
+                 return false;
+             }
         }
         else {
             return false;
@@ -31,8 +33,11 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
         return $scope.tab == checkTab;
     };
 
-    $scope.selectTab = function(selectTab){
-        $scope.tab = selectTab;
+
+
+    ////depends on project status ??? filter status to display; !!!$index var in ng-repeat changes!!!
+             /*  $scope.selectTab = function(selectTab){
+          $scope.tab = selectTab;
         if(selectTab == 1){
             var projects = ProjectsFactory.query().$promise.then(function (data){
                 $scope.projects = data;
@@ -40,7 +45,7 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
                 alert("Error:  " + error.data);
             });
         }
-      /*  else if(selectTab == 2){
+        else if(selectTab == 2){
             var projects = ProjectService.getProjectsByCompletition(0).$promise.then(function (data){
                 $scope.projects = data;
             }, function(error){
@@ -53,8 +58,8 @@ chartsApp.controller('ProjectCtrl', ['$scope','ProjectsFactory', '$location', 'P
             }, function(error){
                 alert("Error:  " + error.data);
             });
-        }*/
-    };
+        }
+    };*/
 
     $scope.removeProject = function(id, index){
         var result = confirm("Are you sure you want to delete the project?");
