@@ -9,7 +9,20 @@ chartsApp.controller('AddEmployeeCtrl', ['$scope','EmployeesFactory', '$location
 
     $scope.addEmployee = function () {
 
-        EmployeesFactory.create($scope.employee, $scope.user
+        var paramObj = {
+
+            "employee" : {
+                "name" : $scope.employee.name,
+                "lastName" : $scope.employee.lastName,
+                "jobDescription" : $scope.employee.jobDescription
+            },
+            "user" : {
+                "username" : $scope.user.username,
+                "password" : $scope.user.password
+            }
+        }
+
+        EmployeesFactory.create(paramObj
          /*   $.param(
             {
                 name : $scope.employee.name,

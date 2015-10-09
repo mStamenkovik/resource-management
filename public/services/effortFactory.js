@@ -5,7 +5,7 @@ var path = "http://localhost:8080";
 
 chartsApp.factory('EffortFactory', function ($resource) {
 
-    return $resource(path + '/data/efforts/:id', {}, {
+    return $resource(path + '/data/efforts/effortInformation/:id', {}, {
         /*show: { method: 'GET' },
         update: { method: 'PUT'
                     ,headers : {
