@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 16-Sep-15.
  */
-var path = 'http://10.10.20.84:8080';
+var path = 'http://localhost:8080';
 
 chartsApp.factory('UserFactory', function ($resource) {
     return $resource(path + '/oauth/token', {}, {
@@ -18,7 +18,7 @@ chartsApp.factory('UserFactory', function ($resource) {
 /////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
 chartsApp.service('UserService', ['$http', '$resource',  function($http, $resource) {
 
-    this.getManagerByUserId = function(){
+    this.getEmployeeByUserId = function(){
         var res = $resource(path + '/data/employees/user');
         return res.get();
     };

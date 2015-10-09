@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chart Project</title>
+    <title>Resource Management</title>
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel='stylesheet' href='../angular-loading-bar/build/loading-bar.css' type='text/css' media='all' />
@@ -85,68 +85,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown" dropdown="">
-                <a dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-tasks" role="menu">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong> Berat {{ employee.name }}</strong>
-                                    <span class="pull-right text-muted"> Project Started</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">50% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Monika</strong>
-                                    <span class="pull-right text-muted"> Project in Process</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Atanas</strong>
-                                    <span class="pull-right text-muted"> Project Completed</span>
-                                </p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Tasks</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-tasks -->
-            </li>
+    
             <li class="dropdown" dropdown="">
                 <a dropdown-toggle="" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-comment fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -186,7 +125,7 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user" role="menu">
-                    <li><a><i class="fa fa-user fa-fw"></i> {{ user.username }}</a></li>
+                    <li><a><i class="fa fa-user fa-fw"></i> {{ employee.name }} {{ employee.lastName}}</a></li>
                     <!-- Modal Sittings content -->
                     <li><a><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                     <li class="divider"></li>
@@ -217,7 +156,7 @@
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
 <script type='text/javascript' src='../angular-loading-bar/build/loading-bar.min.js'></script>
 <script src="../bootstrap/dist/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
-<script src="../bootstrap/vendor/vertical-responsive-menu.js"></script>
+
 <!--<script src="../satellizer/satellizer.js"></script>-->
 
 <!-- app config -->
@@ -236,6 +175,7 @@
 <script src="../controllers/editProjectController.js"></script>
 <script src="../controllers/addProjectController.js"></script>
 <script src="../controllers/assignProjectController.js"></script>
+<script src="../controllers/projectsForEmployeeController.js"></script>
 
 <script src="../controllers/manageProjectController.js"></script>
 
@@ -248,5 +188,9 @@
 <script src="../services/employeeFactory.js"></script>
 <script src="../services/projectFactory.js"></script>
 <script src="../services/userFactory.js"></script>
+<script src="../services/effortFactory.js"></script>
+
+<script src="../bootstrap/vendor/vertical-responsive-menu.js"></script>
+
 </body>
 </html>

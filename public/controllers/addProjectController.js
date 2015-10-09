@@ -20,5 +20,10 @@ chartsApp.controller('AddProjectCtrl', ['$scope','ProjectsFactory', 'EmployeesFa
     }, function(error){
         alert("error " + error);
     });
+
+    $scope.cancel = function(){
+      $location.path('/admin/projects');
+    };
+
 }]);
 

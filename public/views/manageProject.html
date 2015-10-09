@@ -1,10 +1,13 @@
-<div class="container">
-    <h3>Manage Project</h3>
-    <h4>{{ project.name }}</h4>
-    Date from: <label>{{ project.fromDate | date}}</label>
-    Date to: <label>{{ project.toDate | date}}</label>
+
+ <h1 class="page-header">Manage Project</h1>
+    <div class="well">
+        <h4>Project Name: {{ project.name }}</h4>
+        Start date: <label>{{ project.fromDate | date}}</label><br/>
+        End date: <label>{{ project.toDate | date}}</label>
+    </div>
     <h4>Assign employee:</h4>
-    <div class="row">
+
+    <div class="row" >
         <div class="form-group">
             <div class="form-group">
                 <div class="col-xs-2">
@@ -38,8 +41,9 @@
             </div>
         </div>
     </div>
-    <div class="row top-buffer">
-        <table class="table table-condensed table-striped">
+    <div style="margin-top: 50px">
+        <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
                 <tr>
                     <th>Name</th>
                     <th>Job Position</th>
@@ -70,12 +74,14 @@
                 </tr>
         </table>
     </div>
+    </div>
     <div class="row">
         <button type="submit" ng-click="saveTeam()" class="btn btn-success pull-right"><span class="glyphicon glyphicon-save"></span>  Save</button>
     </div>
     <div class="row top-buffer">
-        <h3>Assigned Employees</h3>
-        <table class="table table-condensed table-striped">
+        <h3 class="page-header">Assigned Employees</h3>
+        <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
             <tr>
                 <th>Name</th>
                 <th>Job Position</th>
@@ -83,12 +89,11 @@
                 <th>From</th>
                 <th>To</th>
                 <th>Edit</th>
-                <th>Save</th>
                 <th>Remove</th>
             </tr>
             <tr ng-repeat="eff in assignedEmployees">
                 <td>
-                    <span ng-hide="editing">{{ eff.effort.employee.name + ' ' + eff.effort.employee.lastName }}</span>
+                    <span ng-hide="editing">{{ eff.name + ' ' + eff.lastName }}</span>
                     <input ng-show="editing" type="text" ng-model="editEffort.employee" placeholder="Employee" ng-required />
                 </td>
                 <td>
@@ -109,9 +114,10 @@
                 </td>
 
                 <td>
-                    <button type="button" ng-click="removeEmployee($index)" class="btn btn-danger">x</button>
+                    <button type="button" ng-click="removeEffort(eff.effortInformationId)" class="btn btn-danger">x</button>
                 </td>
             </tr>
         </table>
+    </div>
     </div>
 </div>

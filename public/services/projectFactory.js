@@ -2,7 +2,7 @@
  * Created by Polar Cape on 11-Sep-15.
  */
 
-var path = 'http://10.10.20.84:8080';
+var path = 'http://localhost:8080';
 
 //factory for adding a project and getting all the list of all projects
 chartsApp.factory('ProjectsFactory', ['$http', '$resource',
@@ -50,6 +50,11 @@ chartsApp.service('ProjectService', ['$http', '$resource',  function($http, $res
 
     this.getEffortForProject = function(id){
         var res = $resource(path + '/data/projects/:id/employees/effort', {id: '@id'});
+        return res.query({id: id});
+    };
+
+    this.getProjectsForEmployee = function(id){
+        var res = $resource(path + '/data/employees/:id/projects', {id: '@id'});
         return res.query({id: id});
     };
 

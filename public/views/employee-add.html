@@ -18,6 +18,14 @@
                 <label for="exampleInputPassword1">Job Description</label>
                 <input type="text"  ng-model="employee.jobDescription" class="form-control" id="exampleInputPassword1" placeholder="Job Description">
             </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Username</label>
+                <input type="text"  ng-model="user.username" class="form-control" id="exampleInputPassword1" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" ng-model="user.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
             <button type="submit" ng-click="addEmployee()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new employee</button>
             <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
         </form>

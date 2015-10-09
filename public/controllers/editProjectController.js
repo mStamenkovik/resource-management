@@ -41,19 +41,36 @@ chartsApp.controller('EditProjectCtrl', ['$scope','ProjectFactory', 'EmployeeFac
 
 }]);
 
-chartsApp.controller('ViewProjectCtrl', ['$scope','ProjectFactory', '$location', '$stateParams', function($scope, ProjectFactory, $location, $stateParams){
+
+chartsApp.controller('ViewProjectCtrl', ['$scope','ProjectFactory', 'ProjectService', '$location', '$stateParams', 
+   function($scope, ProjectFactory, ProjectService, $location, $stateParams){
 
     // callback for ng-click 'cancel':
     $scope.cancel = function () {
-        $location.path('/admin/projects');
+      var part = $location.path().split(/[\s/]+/)[1];
+          if(part == 'admin'){
+                 $location.path('/admin/projects');
+            }
+            else {
+               $location.path('/employee/projects');
+            }
     };
 
     var project = ProjectFactory.show({id: $stateParams.id}).$promise.then(function(data){
             $scope.project = data;
         $scope.manager = data.manager.name + ' ' + data.manager.lastName;
+        var assignedEmployees = ProjectService.getEffortForProject($scope.project.id)
+               .$promise.then(function(data){
+                     $scope.assignedEmployees = data;
+                          }
+                 ,function(error){
+                       alert("Error " + data);
+            }); 
         }, function(error){
              alert("Error");
         });
+
+
 
 }]);
 

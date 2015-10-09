@@ -3,9 +3,13 @@
  */
 chartsApp.controller('AddEmployeeCtrl', ['$scope','EmployeesFactory', '$location', function($scope, EmployeesFactory, $location){
 
+    $scope.cancel = function(){
+      $location.path('/admin/employees');
+    };
+
     $scope.addEmployee = function () {
 
-        EmployeesFactory.create($scope.employee
+        EmployeesFactory.create($scope.employee, $scope.user
          /*   $.param(
             {
                 name : $scope.employee.name,

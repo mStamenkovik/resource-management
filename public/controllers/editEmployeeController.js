@@ -24,12 +24,6 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
         $location.path('/admin/employees');
     };
 
-    /*var jobs = Job.query().$promise.then(function(jobs) {
-        $scope.jobs = jobs;
-    });*/
-
-    //$scope.employee = EmployeeFactory.show({id: $routeParams.id});
-
       //display employee to change
       var employee  = EmployeeFactory.show({id: $stateParams.id}).$promise.then(function (employee){
            $scope.employee = employee;

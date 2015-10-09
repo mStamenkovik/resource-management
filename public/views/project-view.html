@@ -28,11 +28,39 @@
             <label>Project Manager</label>
             <input ng-disabled="true" type="text" class="form-control" ng-model="manager">
         </div>
-        <div class="form-group">
-            <label>Assigned Employees</label>
-           <!-- <h5 ng-repeat="employee in project.employees">{{ employee.name }}  {{ employee.last_name }}</h5>-->
-        </div>
         <button type="submit" ng-click="cancel()" class="btn btn-primary">Cancel</button>
     </form>
 </div>
+
+   <h3 class="page-header">Assigned Employees</h3>
+        <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Job Position</th>
+                <th>Working hours</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+            <tr ng-repeat="eff in assignedEmployees">
+                <td>
+                    <span ng-hide="editing">{{ eff.name + ' ' + eff.lastName }}</span>
+                    <input ng-show="editing" type="text" ng-model="editEffort.employee" placeholder="Employee" ng-required />
+                </td>
+                <td>
+                     <span>{{ eff.role }}</span>
+                </td>
+                <td>
+                     <span>{{ eff.percent }}</span>
+                </td>
+                <td>
+                     <span>{{ eff.fromDate | date }}</span>
+                </td>
+                <td>
+                     <span>{{ eff.toDate | date }}</span>
+                </td>
+               
+            </tr>
+        </table>
+    </div>
 

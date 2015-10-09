@@ -1,8 +1,8 @@
 /**
  * Created by Polar Cape on 30-Sep-15.
  */
-chartsApp.controller('ManageProjectCtrl', ['$scope', 'ProjectFactory', 'EmployeesFactory', 'ProjectAssignFactory', 'ProjectService', '$stateParams',
-       function($scope, ProjectFactory, EmployeesFactory, ProjectAssignFactory, ProjectService, $stateParams){
+chartsApp.controller('ManageProjectCtrl', ['$scope', 'ProjectFactory', 'EmployeesFactory', 'ProjectAssignFactory', 'ProjectService', '$stateParams', 'EffortFactory',
+       function($scope, ProjectFactory, EmployeesFactory, ProjectAssignFactory, ProjectService, $stateParams, EffortFactory){
 
     //variable to store all efforts from the table
     var effort = [];
@@ -29,7 +29,14 @@ chartsApp.controller('ManageProjectCtrl', ['$scope', 'ProjectFactory', 'Employee
      $scope.project = data;
      $scope.project.fromDate = new Date(data.fromDate);
      $scope.project.toDate = new Date(data.toDate);
-        $scope.assignedEmployees = ProjectService.getEffortForProject($scope.project.id);  //////////////////////////promiseeeee
+           var assignedEmployees = ProjectService.getEffortForProject($scope.project.id)
+               .$promise.then(function(data){
+                     $scope.assignedEmployees = data;
+                          }
+                 ,function(error){
+                       alert("Error " + data);
+            }); 
+
      }, function(error){
      alert("Error");
      });
@@ -67,10 +74,34 @@ chartsApp.controller('ManageProjectCtrl', ['$scope', 'ProjectFactory', 'Employee
         $scope.effort.splice(index, 1);
     };
 
+    $scope.removeEffort = function(id){
+       var result = confirm("Are you sure you want to remove the employee from the project?");
+        if(result) {
+            EffortFactory.delete({id: id}).$promise.then(function(data){
+                 ProjectService.getEffortForProject($scope.project.id)
+                   .$promise.then(function(data){
+                         $scope.assignedEmployees = data;
+                              }
+                     ,function(error){
+                           alert("Error " + data);
+                    }); 
+           }, function(error){
+                   alert("Error " + data);
+           });
+        }       
+    };
+
      $scope.saveTeam = function(){
          angular.forEach(effort, function(value, key){
              ProjectAssignFactory.update({id: $scope.project.id, employeeId: value.employee.id}, value.effortInformation).$promise.then(function (data){
-                alert("ok");
+                        var assignedEmployees = ProjectService.getEffortForProject($scope.project.id)
+                       .$promise.then(function(data){
+                             $scope.assignedEmployees = data;
+                             $scope.effort = [];
+                                  }
+                         ,function(error){
+                               alert("Error " + data);
+                    }); 
              }, function(error){
                  alert("Error:  " + error.data);
              });

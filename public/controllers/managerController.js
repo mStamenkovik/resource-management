@@ -2,7 +2,7 @@
 chartsApp.controller('ManageCtrl', ['$scope', '$location', 'ProjectService', 'ProjectsFactory', 'UserService',
     function($scope, $location, ProjectService, ProjectsFactory, UserService){
 
-          UserService.getManagerByUserId().$promise.then(function (data){
+          UserService.getEmployeeByUserId().$promise.then(function (data){
               var manager = data;
               ProjectService.getProjectsByManagement(manager.id).$promise.then(function (data){
                  $scope.projects = data;

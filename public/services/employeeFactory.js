@@ -1,7 +1,7 @@
 /**
  * Created by Polar Cape on 10-Sep-15.
  */
-var path = "http://10.10.20.84:8080";
+var path = "http://localhost:8080";
 
 
 //factory for adding an employee and getting all the list of all employees

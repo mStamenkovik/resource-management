@@ -17,7 +17,7 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$loca
             }
             else {
                 $scope.adminLogged = false;
-                $location.path("employee");
+                $location.path("employee/overview");
 
             }
         }

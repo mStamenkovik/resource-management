@@ -89,12 +89,15 @@ chartsApp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: 'views/project-view.html',
             controller: 'ViewProjectCtrl'
         })
-        /*.state('employee.projects', {
-            url: '/employee/projects',
-            templateUrl: 'views/login.ejs',
-            controller: 'LoginCtrl'
-        })*/
-
+        .state('employee.overview', {
+            url: '/overview',
+            templateUrl: 'views/overview.html'
+        })
+        .state('employee.projects', {
+            url: '/projects',
+            templateUrl: 'views/projects.html',
+            controller: 'ProjectsForEmployeeCtrl'
+        })
 });
 
 

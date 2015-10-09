@@ -3,11 +3,20 @@
  */
 
 
-chartsApp.controller('navbarCtrl', ['$scope','UserFactory', '$location', function($scope, UserFactory, $location) {
+chartsApp.controller('navbarCtrl', ['$scope','UserFactory', 'UserService','$location', 
+    function($scope, UserFactory, UserService, $location) {
 
     if (angular.isDefined(sessionStorage.token)) {
+        UserService.getEmployeeByUserId().$promise.then(function(data){
+              $scope.employee = data;
+              sessionStorage.employee = $scope.employee.name + ' ' + $scope.employee.lastName;
+              //var employee = data;
+              //$scope.employee = employee.name + ' ' + employee.lastName;
+        }, function(error){
+            alert("Error " + error);
+        });
         $scope.userLogged = true;
-
+        
         $scope.loggedIn = true;
         //console.log("role: " + $scope.user.role);
         if (sessionStorage.userRole == "admin") {
