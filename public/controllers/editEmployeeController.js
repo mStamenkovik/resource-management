@@ -35,8 +35,6 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
 
 chartsApp.controller('ViewEmployeeCtrl', ['$scope','EmployeeFactory', '$location', '$stateParams', function($scope, EmployeeFactory, $location, $stateParams){
 
-
-    //console.log("konzole log");
     // callback for ng-click 'cancel':
     $scope.cancel = function () {
         $location.path('/admin/employees');

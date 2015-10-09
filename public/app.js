@@ -6,12 +6,8 @@ chartsApp = angular.module('chartsApp', [ 'ngResource', 'ui.router', 'base64', '
 chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
     return {
         'request': function (config) {
-          // console.log("Def: " + angular.isDefined(sessionStorage.token));
 
             if(angular.isDefined(sessionStorage.token)){
-                /*var session_user = JSON.parse(sessionStorage.user);
-                var user = session_user.username + ':' + session_user.password;
-                var encodedUser = $base64.encode(user);*/
 
                var token = sessionStorage.token;
                 /*console.log("TOKEN: " + token);*/
@@ -19,14 +15,48 @@ chartsApp.factory('HRHttpInterceptors', ['$base64', function($base64) {
             }
 
 
-
-
-            //config.headers['Authorization'] = 'Basic YWRtaW46YWRtaW4=';
-            //config.headers['Accept'] = 'application/json;odata=verbose';
-
             return config;
         }
     };
+}]);
+
+
+chartsApp.run(['$location', '$rootScope', '$state', function($location, $rootScope, $state){
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    
+
+      var checkIfLoggedIn = function(){                    
+            if (angular.isDefined(sessionStorage.token)){              
+                return true;
+            }
+            else
+                return false;
+        };
+        
+        /*console.log("next.templateUrl -> " + next.templateUrl);
+        console.log("current.templateUrl -> " + current.templateUrl);
+        console.log("check rootscope: " + $rootScope.isLoggedIn);*/
+          //console.log("state "  + fromState.name);
+          //console.log("stateto "  + toState.name);
+        if (!checkIfLoggedIn()) {
+            if(toState.name != 'login'){
+                event.preventDefault(); // stop current execution
+                $state.go('login');
+            }
+          
+            $location.path('/login');
+        }
+        else {
+            var part = fromState.name.split(".")[0];
+            var partto = toState.name.split(".")[0];
+            if((part == 'employee') && (partto == 'admin')){
+                    event.preventDefault(); // stop current execution
+                $state.go('login');
+            }
+        }
+       
+        
+      });
 }]);
 
 
