@@ -2,6 +2,7 @@
  * Created by Polar Cape on 10-Sep-15.
  */
 
+/* handle states */
 chartsApp.config(function($stateProvider, $urlRouterProvider){
 
   //  $urlRouterProvider.otherwise('/');

@@ -1,16 +1,24 @@
 /**
  * Created by Polar Cape on 16-Sep-15.
  */
+
+ /* controller that handles the login view */
 chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$location', '$rootScope', '$state',
     function($scope, UserFactory, UserService, $location, $rootScope, $state){
         $scope.user = {};
+        /* message to display if user enters bad credentials */
         $scope.message = "";
 
+        /* when url is /login, a check is made to see whether a user is logged in; 
+           if user is not logged in, redirects to login;
+           else sets a variable to show or hide some aspects of the view*/
         if (angular.isDefined(sessionStorage.token)) {
             $scope.userLogged = true;
 
             $scope.loggedIn = true;
-            //console.log("role: " + $scope.user.role);
+            
+            /* redirects to home page of admin or employee;
+               depends on role  */
             if (sessionStorage.userRole == 'ROLE_ADMIN') {
                 $scope.adminLogged = true;
                 $location.path("admin/overview");
@@ -26,16 +34,22 @@ chartsApp.controller('LoginCtrl', ['$scope','UserFactory', 'UserService', '$loca
         }
 
 
-
+    /* called when login button is clicked */
         $scope.login = function(){
-
+         
+         /* using UserFactory to check whether username and password are correct*/
             UserFactory.authenticate($.param({
+                /* required params by oauth2 */
                 grant_type: 'password',
                 username: $scope.user.username,
                 password: $scope.user.password
             })).$promise.then(function (data){
-
+                    /* successful authentication */
+                    /* get the returned token and set it in sessionStorage.token to be accessible */
                     sessionStorage.token = data.access_token;
+                    /* to handle routing and privileges, the user's role is kept in sessionStorage;
+                       get the user's role with UserService.getRole() 
+                    */
                     UserService.getRole().$promise.then(function (data){
                         var role = "";
                         var i;

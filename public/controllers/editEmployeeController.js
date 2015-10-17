@@ -1,9 +1,15 @@
 /**
  * Created by Polar Cape on 14-Sep-15.
  */
+/* Edit and View Employee controller*/
+
+/* edits employee*/
 chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location','$stateParams', function($scope, EmployeeFactory, $location,$stateParams){
 
-    // callback for ng-click 'updateEmployee':
+    /* ng-click 'updateEmployee';
+       the function doesn't check what fields are changed;
+       it updates the entire object
+     */
     $scope.updateEmployee = function () {
         var emp = {
             name : $scope.employee.name,
@@ -19,12 +25,15 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
 
     };
 
-    // callback for ng-click 'cancel':
+    /* ng-click to go back to previous state;
+    since only admin can edit the employees list it doesn't check for previous location
+    and redirects to employees list view; */
     $scope.cancel = function () {
         $location.path('/admin/employees');
     };
 
-      //display employee to change
+      /* get the employee with given id that needs to be edited;
+         on error: alert*/
       var employee  = EmployeeFactory.show({id: $stateParams.id}).$promise.then(function (employee){
            $scope.employee = employee;
       }, function(error){
@@ -33,13 +42,18 @@ chartsApp.controller('EditEmployeeCtrl', ['$scope','EmployeeFactory', '$location
 
 }]);
 
+/* gets an employee to display */
 chartsApp.controller('ViewEmployeeCtrl', ['$scope','EmployeeFactory', '$location', '$stateParams', function($scope, EmployeeFactory, $location, $stateParams){
 
-    // callback for ng-click 'cancel':
+    /* ng-click to go back to previous state;
+    since only admin can view the employees list it doesn't check for previous location
+    and redirects to employees list view; */
     $scope.cancel = function () {
         $location.path('/admin/employees');
     };
 
+    /* get the employee with given id;
+         on error: alert*/
     var employee  = EmployeeFactory.show({id: $stateParams.id}).$promise.then(function (employee){
         $scope.employee = employee;
     }, function(error){

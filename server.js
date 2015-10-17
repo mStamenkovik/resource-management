@@ -20,10 +20,10 @@ var path = require('path');
 //res.sendFile(path.resolve('temp/index.html'));
 
 app.get('*', function(req, res) {
-   // res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-    res.sendFile(__dirname + '/public/views/index.html');
+   // res.sendfile('./public/index.html'); 
+    res.sendFile(__dirname + '/public/views/index.html');// load the single view file (angular will handle the page changes on the front-end)
 });
 
-// listen (start app with node server.js) ======================================
+// listen - start app with node main file -> server.js
 app.listen(9966);
 console.log("App started!!!");
